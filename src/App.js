@@ -1,26 +1,20 @@
-import React from 'react'
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { InfoProvider, useInfoContext } from './context/Context';
-import Footer from './pages/Footer/Footer';
-import Home from './pages/Home/Home';
-import Navbar from './pages/Navbar/Navbar';
+import React from "react";
+import { useInfoContext } from "./context/Context";
+import Home from "./pages/Home/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const {currentUser} = useInfoContext()
+  const { currentUser } = useInfoContext();
   console.log(currentUser);
   return (
-    <div className='app'>
-      <BrowserRouter>
-        <Navbar />
-        <Home />
+    <Router>
+      <div className="app">
         <Routes>
-          {/* <Route path='/' element={<About /> } /> */}
-
+          <Route path="/" element={<Home />} />
         </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
-  )
-}
+      </div>
+    </Router>
+  );
+};
 
-export default App
+export default App;
