@@ -7,12 +7,13 @@ const App = () => {
   const { currentUser } = useInfoContext();
   console.log(currentUser);
   return (
-    <div className="app">
-      <h1>Kkkkk</h1>
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes> */}
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
