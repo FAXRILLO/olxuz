@@ -6,15 +6,14 @@ console.log(serverURL);
 
 const API = axios.create({baseURL: serverURL});
 
-export const getAllUsers = () => API.get('api/user', formData);
-export const getUser = (id) => API.get(`api/user/${id}`, formData);
-
-export const updateUser = (id, formData) => {
+export const deleteAll = (id) => {
     const token = JSON.parse(localStorage.getItem("token"));
-    return API.put(`/api/user/${id}`,formData, { headers: { token } });
+    return API.delete(`/api/:${id}`, { headers: { token } });
 }
+
 
 export const deleteUser = (id) => {
     const token = JSON.parse(localStorage.getItem("token"));
-    return API.put(`/api/user/${id}`, { headers: { token } });
+    return API.delete(`/api/user/:${id}`, { headers: { token } });
 }
+
