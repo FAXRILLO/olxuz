@@ -12,12 +12,12 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-       <Navbar />
         <Routes>
+
+        {/* <Route path="/" element={currentUser ? <Home /> : <SignUp />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );
