@@ -1,0 +1,120 @@
+.footer{
+    .box_1{
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+        background-color: rgba($color: #002f34, $alpha: 1.0);
+        color: white;
+        align-items: center;
+        .img1{
+            margin: 0 auto;
+            display: block;
+            text-align: right;
+            width: 100px;
+            height: 100px;
+        }
+        .p_element{
+            color: #7f9799;
+        }
+        .h5_element{
+            color: #ffffff;
+        }
+        .batafsil{
+            text-align: center;
+            background-color: white;
+            color: #002f34;
+            font-weight: 700;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+        .batafsil:hover{
+            background-color: #002f34;
+            color: white;
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+    }
+    .box_2{
+        padding: 50px 0;
+        background-color: #cbf7ee;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        .brend{
+            color: #002f34;
+            font-size: 60px;
+            font-weight: bolder;
+            margin-bottom: 50px;
+            
+        }
+        .text{
+            color: #002f34;
+            font-size: 15px;
+            font-weight: 400;
+            word-spacing: 2px;
+            width: 60%;
+            margin: 0 auto;
+        }
+    }
+    .box_3{
+        padding: 50px 0;
+        .img1{
+            width: 150px;
+            height: 150px;
+        }
+        .img2{
+            width: 150px;
+            height: 150px;
+        }
+        p{
+            margin-top: 50px;
+            word-spacing: 5px;
+            span{
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+    }
+    .box_4{
+        .kh2{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .image{
+            text-align: center;
+            display: flex;
+            img{
+                width: 150px;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 345px) {
+    .footer{
+        .box_3{
+            .img1{
+                width: 150px;
+                height: 150px;
+            }
+            .img2{
+                margin-top: 70px;
+                width: 150px;
+                height: 150px;
+            }
+            p{
+                margin-top: 50px;
+                word-spacing: 5px;
+                font-size: 16px;
+                span{
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
