@@ -82,8 +82,14 @@
     .box_4{
         margin: 50px 0;
         .kh2{
+            margin-top: 5px;
             font-size: 15px;
             font-weight: bold;
+        }
+        .kh2:hover{
+           background-color: #002f34;
+           color: white;
+           padding: 5px 2px;
         }
         .image{
             text-align: center;
@@ -129,10 +135,44 @@
             padding-left: 50px;
             font-size: 13px;
         }
+        .fut{
+            margin-top: 30px;
+            display: flex;
+            .bay{
+                margin-left: 10px;
+              display: flex;
+              img{
+                width: 30px;
+                height: 20px;
+              }  
+              span{
+                font-size: 10px;
+              }
+            }
+        }
     }
 }
 
 
+@media only screen and (max-width: 410px) {
+    .footer{
+        .box_4{
+            .fut{
+                .bay{
+                    margin-left: 10px;
+                  display: flex;
+                  img{
+                    width: 20px;
+                    height: 20px;
+                  }  
+                  span{
+                    font-size: 7px;
+                  }
+                }
+            }
+        }
+    }
+}
 @media only screen and (max-width: 350px) {
     .footer{
         .box_3{
@@ -168,6 +208,19 @@
                 }
                 .image2{
                     width: 150px;
+                }
+            }
+            .fut{
+                .bay{
+                    margin-left: 10px;
+                    display: block;
+                  img{
+                    width: 20px;
+                    height: 20px;
+                  }  
+                  span{
+                    font-size: 7px;
+                  }
                 }
             }
         }

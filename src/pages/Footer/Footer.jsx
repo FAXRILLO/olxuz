@@ -77,6 +77,29 @@ const Footer = () => {
                     <p>Download</p>
                   </div>
                 </div>
+
+                <div className="fut">
+                  <div className="bay">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/2560px-Flag_of_Bulgaria.svg.png" alt="img" />
+                    <span>OLX.bg</span>
+                  </div>
+                  <div className="bay">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkzL7LxkfSSpLvI-S2L6exUC7N7zhyuV-0RZFtN2HqDg&s" alt="img" />
+                    <span>OLX.pl</span>
+                  </div>
+                  <div className="bay">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Tajikistan.svg/800px-Flag_of_Tajikistan.svg.png" alt="img" />
+                    <span>OLX.ro</span>
+                  </div>
+                  <div className="bay">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfOEAx4uRb2ZOhVrx12K4AfypRIrVAmnWX_KNcFpo3xQ&s" alt="img" />
+                    <span>OLX.ua</span>
+                  </div>
+                  <div className="bay">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/2560px-Flag_of_Portugal.svg.png" alt="img" />
+                    <span>OLX.pl</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
