@@ -6,5 +6,5 @@ console.log(serverURL);
 
 const API = axios.create({baseURL: serverURL});
 
-export const register = (formData) => API.post('auth/signup', formData);
-export const login = (formData) => API.post('auth/login', formData);
+export const register = (formData) => API.post('/api/auth/signup', formData);
+export const login = (formData) => API.post('/api/auth/login', formData);
