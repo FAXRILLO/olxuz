@@ -45,7 +45,7 @@ const Footer = () => {
           <div className="box_4">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
                   <h2 className='kh2'>Mobil ilovalar</h2>
                   <h2 className='kh2'>Yordam</h2>
                   <h2 className='kh2'>Pullik xizmatlar</h2>
@@ -53,7 +53,7 @@ const Footer = () => {
                   <h2 className='kh2'>Foydalanish shartlari</h2>
                   <h2 className='kh2'>Maxfiylik siyosati</h2>
                 </div>
-                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
                   <h2 className='kh2'>Xavfsizlik qoidalari</h2>
                   <h2 className='kh2'>Sayt xaritasi</h2>
                   <h2 className='kh2'>Mintaqalar xaritasi</h2>
@@ -64,10 +64,18 @@ const Footer = () => {
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                   <div className="image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROE58iVfa0b4xRx762d89MAAdNfEbhrkId4SclbQwIvg&s" alt="img" />
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcWqEUqjgkjjzT9p4nOKjZYxa2qeesoq-qyS9K6i5-gQ&s" alt="img" />
+                    <img className='image1' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROE58iVfa0b4xRx762d89MAAdNfEbhrkId4SclbQwIvg&s" alt="img" />
+                    <img className='image2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcWqEUqjgkjjzT9p4nOKjZYxa2qeesoq-qyS9K6i5-gQ&s" alt="img" />
                   </div>
-                  
+                  <p className='p'>Телефонингиз учун бепул илова</p>
+                  <div className="app">
+                    <span>App Store</span>
+                    <p>Download</p>
+                  </div>
+                  <div className="google">
+                    <span>Google Play</span>
+                    <p>Download</p>
+                  </div>
                 </div>
               </div>
             </div>
