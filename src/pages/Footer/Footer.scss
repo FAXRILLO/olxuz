@@ -1,5 +1,7 @@
 .footer{
+    width: 100%;
     .box_1{
+        // background-color: gainsboro;
         align-items: center;
         justify-content: center;
         width: 100%;
@@ -18,7 +20,7 @@
             color: #7f9799;
         }
         .h5_element{
-            color: #ffffff;
+            color:rgb(235, 232, 232);
         }
         .batafsil{
             text-align: center;
@@ -38,8 +40,8 @@
         }
     }
     .box_2{
-        padding: 50px 0;
         background-color: #cbf7ee;
+        padding: 50px 0;
         text-align: center;
         align-items: center;
         justify-content: center;
@@ -60,6 +62,7 @@
         }
     }
     .box_3{
+        
         padding: 50px 0;
         border-bottom: 2px solid black;
         .img1{
@@ -80,17 +83,17 @@
         }
     }
     .box_4{
-        margin: 50px 0;
+        padding: 50px 0;
         .kh2{
             margin-top: 5px;
             font-size: 15px;
             font-weight: bold;
         }
-        .kh2:hover{
-           background-color: #002f34;
-           color: white;
-           padding: 5px 2px;
-        }
+        // .kh2:hover{
+        //    background-color: #002f34;
+        //    color: white;
+        //    padding: 5px 2px;
+        // }
         .image{
             text-align: center;
             display: flex;
@@ -147,6 +150,7 @@
               }  
               span{
                 font-size: 10px;
+                margin-left: 5px;
               }
             }
         }

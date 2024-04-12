@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className = "navbar">
-        <div className = "container-fluid">
+        <div className = "container">
           <h1 className = "brand">olx</h1>
           <form className = "d-flex">
             <h5 className='xabar'><i style={{marginRight: "10px"}} className ="fa-regular fa-comment"></i> Xabarlar</h5>
