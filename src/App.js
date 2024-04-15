@@ -8,7 +8,7 @@ import Footer from "./pages/Footer/Footer";
 
 const App = () => {
   const { currentUser } = useInfoContext();
-  console.log(currentUser);
+  console.log(currentUser, 4);
   return (
     <Router>
       <div className="app">
