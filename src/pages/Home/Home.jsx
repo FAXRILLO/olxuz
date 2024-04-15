@@ -1,18 +1,16 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
-import Footer from '../Footer/Footer'
 import Serch from '../Serch/Serch'
 import Menyu from '../Menyu/Menyu'
 import HomeData from '../HomeData/HomeData'
+import Footer1 from '../Footer/Footer1'
 
 const Home = () => {
   return (
     <div>
-      <Navbar/>
       <Serch />
       <Menyu />
-       <HomeData />
-      <Footer />
+      <HomeData />
+      <Footer1 />
     </div>
   )
 }

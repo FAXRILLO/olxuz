@@ -3,9 +3,8 @@
     color: white;
     align-items: center;
     .brand{
-        color: #02ebcc;
-        font-size: 50px;
-        font-weight: bold;
+        width: 70px;
+        height: 70px;
     }
     form{
         text-align: center;
@@ -38,15 +37,13 @@
         }
     }
 }
-.box{
-    
-}
 
 @media only screen and (max-width: 667px) {
     .navbar{
 
         .brand{
-            font-size: 30px;
+            width: 50px;
+            height: 50px;
         }
         form{
             .xabar{
