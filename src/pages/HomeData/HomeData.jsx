@@ -7,6 +7,7 @@ const HomeData = () => {
         <div className="container">
             <div className="row">
                 <div className="box">
+                    <h2 className='h2'>Премиум объявления</h2>
                    <div className="row">
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                             <div className="card">
