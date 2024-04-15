@@ -6,6 +6,7 @@ const HomeData = () => {
     <div className='homedata'>
         <div className="container">
             <div className="row">
+                
                 <div className="box">
                     <h2 className='h2'>Премиум объявления</h2>
                    <div className="row">
