@@ -10,21 +10,23 @@ import Footer1 from "./pages/Footer/Footer1";
 import HomeData from "./pages/HomeData/HomeData";
 import Serch from "./pages/Serch/Serch";
 import Menyu from "./pages/Menyu/Menyu";
+import { ToastContainer } from "react-toastify";
+
 
 const App = () => {
   const { currentUser } = useInfoContext();
-  console.log(currentUser);
   return (
     <Router>
       <div className="app">
         <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/oneinfo" element={<OneInfo />} />
+        <Routes>
+          <Route path="/" element={currentUser ? <Home /> : <SignUp />} />
 
-          </Routes>
+        </Routes>
         <Footer />
+
+        <ToastContainer />
+
       </div>
     </Router>
   );

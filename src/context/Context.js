@@ -12,6 +12,7 @@ export const InfoProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
   };
+  
 
   return (
     <InfoContext.Provider value={value}>
