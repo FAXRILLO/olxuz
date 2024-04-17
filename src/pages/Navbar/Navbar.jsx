@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./Navbar.scss"
 
 const Navbar = () => {
@@ -6,7 +7,9 @@ const Navbar = () => {
     <div>
       <nav className = "navbar">
         <div className = "container">
-          <img className='brand' src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="img" />
+          <Link to="/">
+            <img className='brand' src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="img" />
+          </Link>
           <form className = "d-flex">
             <h5 className='xabar'><i style={{marginRight: "10px"}} className ="fa-regular fa-comment"></i> Xabarlar</h5>
             <h5 className='til'>O'Z | PY</h5>
