@@ -20,9 +20,9 @@ const App = () => {
       <div className="app">
         <Navbar />
         <Routes>
-          {/* <Route path="/" element={currentUser ? <Home /> : <SignUp />} /> */}
-          <Route path="/" element={<Home />} />
-          <Route path="/oneinfo" element={<OneInfo />} />
+          <Route path="/" element={currentUser ? <Home /> : <SignUp />} />
+          {/* <Route path="/" element={<Home />} />
+          <Route path="/oneinfo" element={<OneInfo />} /> */}
           
         </Routes>
         <Footer />
