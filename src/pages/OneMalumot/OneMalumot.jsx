@@ -47,7 +47,7 @@ const oneMalumot = () => {
                                 <h3 className='prise'>41000 y.e</h3>
                                 <button className='btn_xabar'>Xabar yozish</button>
                                 <br />
-                                <button className='btn_tel'><i className="icon2 fa-solid fa-user"></i> 33 333 33 30</button>
+                                <button className='btn_tel'><i class="fa-sharp fa-solid fa-phone-volume"></i> 33 333 33 30</button>
                             </div>
                             <div style={{backgroundColor: "white",}} className="about2">
                                 <h6 className='h6'>Foydalanuvchi</h6>
@@ -117,20 +117,36 @@ const oneMalumot = () => {
                 </div>
                 <div className="page3">
                     <div className="row">
-                        <div style={{backgroundColor: "white",}} className="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
+                        <div style={{backgroundColor: "white",}} className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div className="row">
                                 <div  className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div className="man">
-                                        <h4>SOTUVCHIGA MUROJAAT QILISH</h4>
-                                        
+                                        <h4 className='sotuv'>SOTUVCHIGA MUROJAAT QILISH</h4>
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <img className='userimg2' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
+                                                </div>
+                                                <div className="col-10">
+                                                    <span className='name'>Sunnat</span>
+                                                    <h6 className='p1'>OLXda 2022 M11 beri</h6>
+                                                    <h6 className='p1'>So'ngi faollik 2024 M04 15</h6>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
-                                <div  className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"></div>
+                                <div  className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div className="malumotnomer">
+                                        <button className='habar'>Xabar yozish</button>
+                                        <div className="nomer">
+                                            <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                            <h4 className='h4x'>xxx xxx xxx</h4>
+                                            <button className='korsat'>Ko'rsatish</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div  className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
-                            
-                        </div>
+                        
                     </div>
                 </div>
             </div>
