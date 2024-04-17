@@ -21,6 +21,7 @@ const Test = () => {
             profilePicture: data.picture,
           };
           res = await googleAuth(newUser)
+          console.log(res);
           toast.dismiss();
           localStorage.setItem("profile", JSON.stringify(res?.data?.findUser))
           localStorage.setItem("token", JSON.stringify(res?.data?.token))
