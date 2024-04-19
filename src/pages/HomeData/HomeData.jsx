@@ -14,7 +14,10 @@ const HomeData = () => {
                                 <Link to="/oneinfo" className="card">
                                     <img className='image' src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="img" />
                                     <div className="page">
-                                        <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                        <div className="boz">
+                                            <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                            <i class="fa-regular fa-heart"></i>
+                                        </div>
                                         <p className='prise'>76374364766   <span>so'm</span></p>
                                         <br />
                                         <span className='city'>Toshkent, Yunusobot tumani</span>
@@ -27,7 +30,10 @@ const HomeData = () => {
                                 <Link to="/oneinfo" className="card">
                                     <img className='image' src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="img" />
                                     <div className="page">
-                                        <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                        <div className="boz">
+                                            <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                            <i class="fa-regular fa-heart"></i>
+                                        </div>
                                         <p className='prise'>76374364766   <span>so'm</span></p>
                                         <br />
                                         <span className='city'>Toshkent, Yunusobot tumani</span>
@@ -40,7 +46,10 @@ const HomeData = () => {
                                 <Link to="/oneinfo" className="card">
                                     <img className='image' src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="img" />
                                     <div className="page">
-                                        <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                        <div className="boz">
+                                            <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                            <i class="fa-regular fa-heart"></i>
+                                        </div>
                                         <p className='prise'>76374364766   <span>so'm</span></p>
                                         <br />
                                         <span className='city'>Toshkent, Yunusobot tumani</span>
@@ -53,7 +62,10 @@ const HomeData = () => {
                                 <Link to="/oneinfo" className="card">
                                     <img className='image' src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="img" />
                                     <div className="page">
-                                        <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                        <div className="boz">
+                                            <h5 className='info'> Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
+                                            <i class="fa-regular fa-heart"></i>
+                                        </div>
                                         <p className='prise'>76374364766   <span>so'm</span></p>
                                         <br />
                                         <span className='city'>Toshkent, Yunusobot tumani</span>

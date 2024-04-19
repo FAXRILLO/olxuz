@@ -16,15 +16,18 @@ import { ToastContainer } from "react-toastify";
 const App = () => {
   const { currentUser } = useInfoContext();
   return (
+
+    
     <Router>
       <div className="app">
+        <Navbar />
         <Routes>
           <Route path="/" element={currentUser ? <Home /> : <SignUp />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/oneinfo" element={<OneInfo />} />
           
         </Routes>
-
+        <Footer />
         <ToastContainer />
 
       </div>

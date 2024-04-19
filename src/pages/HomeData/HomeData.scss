@@ -24,9 +24,15 @@
             }
             .page{
                 padding: 10px;
-                .info{
-                    font-size: 15px;
-                    margin-bottom: 10px;
+                .boz{
+                    display: flex;
+                    .info{
+                        font-size: 15px;
+                        margin-bottom: 10px;
+                    }
+                    i{
+                        text-align: right;
+                    }
                 }
                 .prise{
                     font-size: 12px;
