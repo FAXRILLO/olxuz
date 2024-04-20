@@ -6,6 +6,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.js"
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <InfoProvider>
