@@ -9,11 +9,12 @@ import Navbar from '../Navbar/Navbar'
 const Home = () => {
   return (
     <div>
-
-      <Serch />
-      <Menyu />
-      <HomeData />
-      <Footer1 />
+      <Navbar />
+        <Serch />
+        <Menyu />
+        <HomeData />
+        <Footer1 />
+      <Footer />
 
     </div>
   )

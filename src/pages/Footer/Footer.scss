@@ -85,15 +85,16 @@
         border-top: 2px solid black;
         padding: 50px 0;
         .kh2{
+            display: block;
             margin-top: 5px;
             font-size: 15px;
             font-weight: bold;
         }
-        // .kh2:hover{
-        //    background-color: #002f34;
-        //    color: white;
-        //    padding: 5px 2px;
-        // }
+        .kh2:hover{
+           background-color: #002f34;
+           color: white;
+           padding: 0px 0px;
+        }
         .image{
             text-align: center;
             display: flex;

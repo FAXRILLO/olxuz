@@ -1,8 +1,11 @@
 import React from 'react'
 import "./OneMalumot.scss"
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import {data} from "../../data"
 
-const oneMalumot = () => {
+const OneMalumot = () => {
+    const id = useParams().id;
+    const res = data.filter((res) => res.id == id)[0];
   return (
     <div className='onemalumot'>
       <div className="container">
@@ -22,15 +25,14 @@ const oneMalumot = () => {
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                             </div>
                             <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                <img style={{maxWidth: "100%", maxHeight: "100%"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCZNXrICbJDn4YnD8g6LyF2tOQIhIEUGAYJ5NKuD4WYw&s" className="d-block w-100" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                <img style={{maxWidth: "100%", maxHeight: "100%"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCZNXrICbJDn4YnD8g6LyF2tOQIhIEUGAYJ5NKuD4WYw&s" className="d-block w-100" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                <img style={{maxWidth: "100%", maxHeight: "100%"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCZNXrICbJDn4YnD8g6LyF2tOQIhIEUGAYJ5NKuD4WYw&s" className="d-block w-100" alt="..." />
-                                </div>
+                                {res.img.map((res) => {
+                                    return (
+                                        <Link to="/rasim" className="carousel-item active">
+                                        <img src={res} className="d-block w-100" alt="..." />
+                                        </Link>
+                                    )
+                                })}
+                                
                             </div>
                             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -48,11 +50,11 @@ const oneMalumot = () => {
                                     <small className='joy'>Joylashtirilgan sana: 12-avgust</small>
                                     <i className="icon fa-regular fa-heart"></i>
                                 </div>
-                                <h4 className='h4'>Voyah Free apollo Tech - hybrid 2024</h4>
-                                <h3 className='prise'>41000 y.e</h3>
+                                <h4 className='h4'>{res.content}</h4>
+                                <h3 className='prise'>{res.price}</h3>
                                 <button className='btn_xabar'>Xabar yozish</button>
                                 <br />
-                                <button className='btn_tel'><i className="fa-sharp fa-solid fa-phone-volume"></i> 33 333 33 30</button>
+                                <button className='btn_tel'><i className="fa-sharp fa-solid fa-phone-volume"></i>{res.phone}</button>
                             </div>
                             <div style={{backgroundColor: "white",}} className="about2">
                                 <h6 className='h6'>Foydalanuvchi</h6>
@@ -62,7 +64,7 @@ const oneMalumot = () => {
                                             <img className='userimg' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
                                         </div>
                                         <div className="col-10">
-                                            <span className='name'>Sunnat</span>
+                                            <span className='name'>{res.userName}</span>
                                             <h6 className='p1'>OLXda 2022 M11 beri</h6>
                                             <h6 className='p1'>So'ngi faollik 2024 M04 15</h6>
                                         </div>
@@ -86,20 +88,20 @@ const oneMalumot = () => {
                                     </div>
                                     <div className="btnlar">
                                         <button className='malumotbtn'>Jismoniy shaxs</button>
-                                        <button className='malumotbtn'>Model: Cobalt</button>
-                                        <button className='malumotbtn'>Kuzov turi: Sedan</button>
-                                        <button className='malumotbtn'>Ishlab chiqarilgan yili: 2020</button>
-                                        <button className='malumotbtn'>Bosgan yo‘li: 89 000 km</button>
-                                        <button className='malumotbtn'>Uzatmalar qutisi: Avtomatik</button>
-                                        <button className='malumotbtn'>Rang: Kul rang</button>
-                                        <button className='malumotbtn'>Dvigatel hajmi: 15 cm³</button>
+                                        <button className='malumotbtn'>Model: {res.name}</button>
+                                        <button className='malumotbtn'>Narxi: {res.price}</button>
+                                        <button className='malumotbtn'>Ishlab chiqarilgan yili: {res.year}</button>
+                                        <button className='malumotbtn'>Bosgan yo‘li: {res.run}</button>
+                                        <button className='malumotbtn'>Uzatmalar qutisi: Avtomatik</button> 
+                                        <button className='malumotbtn'>Rang: {res.color}</button>
+                                        <button className='malumotbtn'>Dvigatel hajmi: {res.engine}</button>
                                         <button className='malumotbtn'>Yoqilg‘i turi: Gaz/Benzin</button>
                                         <button className='malumotbtn'>Mashina holati: Ідеальний</button>
                                         <button className='malumotbtn'>Mulkdorlar soni: 1</button>
                                         <button className='malumotbtn'>Qo‘shimcha optsiyalar: Охоронна система, Elektrko‘zgular, El. oyna ko‘targichlar, Konditsioner</button>
                                     </div>
                                     <h1 className='h1_1'>TAVSIF</h1>
-                                    <p className='pmalumot'>Кобалть 2020-йил,4- позиция сотилади.Краскаси тозза,идел холатда.4 поколения гази бор.Балонлар такилган,аккумулятор 1 ой один алиштирилган хеч канака харажати йук оласила хайдесила.</p>
+                                    <p className='pmalumot'>{res.content}</p>
                                 </div>
                         </div>
                         <div  className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
@@ -108,9 +110,9 @@ const oneMalumot = () => {
                                     <div className="row">
                                         <div className="col-6">
                                             <h4 className='h4_2'><i className="fa-solid fa-location-dot"></i> 
-                                                Toshkent, Chilonzor tumani
+                                                {res.location}
                                             </h4>
-                                            <small className='small'>Toshkent viloyati</small>
+                                            <small className='small'>{res.location}</small>
                                         </div>
                                         <div className="col-6">
                                             <img className='img1' src="https://i.ytimg.com/vi/U42ICAgFUJQ/sddefault.jpg" alt='img' />
@@ -132,7 +134,7 @@ const oneMalumot = () => {
                                                     <img className='userimg2' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
                                                 </div>
                                                 <div className="col-10">
-                                                    <span className='name'>Sunnat</span>
+                                                    <span className='name'>{res.userName}</span>
                                                     <h6 className='p1'>OLXda 2022 M11 beri</h6>
                                                     <h6 className='p1'>So'ngi faollik 2024 M04 15</h6>
                                                 </div>
@@ -144,8 +146,7 @@ const oneMalumot = () => {
                                         <button className='habar'>Xabar yozish</button>
                                         <div className="nomer">
                                             <i className="fa-sharp fa-solid fa-phone-volume"></i>
-                                            <h4 className='h4x'>xxx xxx xxx</h4>
-                                            <button className='korsat'>Ko'rsatish</button>
+                                            <h4 className='h4x'>{res.phone}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -599,4 +600,4 @@ const oneMalumot = () => {
   )
 }
 
-export default oneMalumot
+export default OneMalumot

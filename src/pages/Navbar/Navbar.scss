@@ -10,12 +10,11 @@
         }
     }
     .collapse{
-        text-align: center;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-left: 600px;
         ul{
+            text-align: right;
             li{
                 a{
                     color: #ffffff;

@@ -11,6 +11,7 @@ import HomeData from "./pages/HomeData/HomeData";
 import Serch from "./pages/Serch/Serch";
 import Menyu from "./pages/Menyu/Menyu";
 import { ToastContainer } from "react-toastify";
+import Rasim from "./pages/Rasim/Rasim";
 
 
 const App = () => {
@@ -20,14 +21,14 @@ const App = () => {
     
     <Router>
       <div className="app">
-        <Navbar />
         <Routes>
           <Route path="/" element={currentUser ? <Home /> : <SignUp />} />
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/oneinfo" element={<OneInfo />} />
+          <Route path="/oneinfo/:id" element={<OneInfo />} />
+          <Route path="/rasim/:id" element={<Rasim />} />
+          
           
         </Routes>
-        <Footer />
         <ToastContainer />
 
       </div>

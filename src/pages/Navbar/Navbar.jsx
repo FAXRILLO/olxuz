@@ -9,10 +9,10 @@ const Navbar = () => {
       <Link to={"/"} class="navbar-brand" href="#">
         <img src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="logo" />
       </Link>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
       </button>
-
+      <form class="d-flex">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -39,9 +39,13 @@ const Navbar = () => {
           </li>
         </ul>
         <button className="ad">E‘lon berish</button>
-      </div>
+      </div> 
+      </form>
+      
       </div>
     </nav>
+
+    
   )
 }
 

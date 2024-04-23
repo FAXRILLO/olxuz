@@ -10,20 +10,20 @@ const Footer = () => {
             <div className="container">
               <div className="row">
                 <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                  <h2 className='kh2'>Mobil ilovalar</h2>
-                  <h2 className='kh2'>Yordam</h2>
-                  <h2 className='kh2'>Pullik xizmatlar</h2>
-                  <h2 className='kh2'>OLX da biznes</h2>
-                  <h2 className='kh2'>Foydalanish shartlari</h2>
-                  <h2 className='kh2'>Maxfiylik siyosati</h2>
+                  <span className='kh2'>Mobil ilovalar</span>
+                  <span className='kh2'>Yordam</span>
+                  <span className='kh2'>Pullik xizmatlar</span>
+                  <span className='kh2'>OLX da biznes</span>
+                  <span className='kh2'>Foydalanish shartlari</span>
+                  <span className='kh2'>Maxfiylik siyosati</span>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
-                  <h2 className='kh2'>Xavfsizlik qoidalari</h2>
-                  <h2 className='kh2'>Sayt xaritasi</h2>
-                  <h2 className='kh2'>Mintaqalar xaritasi</h2>
-                  <h2 className='kh2'>Ommaviy so‘rovlar</h2>
-                  <h2 className='kh2'>Kariera</h2>
-                  <h2 className='kh2'>Qanday sotib olish va sotish?</h2>
+                  <span className='kh2'>Xavfsizlik qoidalari</span>
+                  <span className='kh2'>Sayt xaritasi</span>
+                  <span className='kh2'>Mintaqalar xaritasi</span>
+                  <span className='kh2'>Ommaviy so‘rovlar</span>
+                  <span className='kh2'>Kariera</span>
+                  <span className='kh2'>Qanday sotib olish va sotish?</span>
                   <h2 className='kh2'>Contact</h2>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
