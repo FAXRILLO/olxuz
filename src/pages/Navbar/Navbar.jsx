@@ -39,6 +39,7 @@ const Navbar = () => {
           </li>
         </ul>
         <button className="ad">E‘lon berish</button>
+        
       </div> 
       </form>
       
