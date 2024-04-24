@@ -12,6 +12,7 @@ import Serch from "./pages/Serch/Serch";
 import Menyu from "./pages/Menyu/Menyu";
 import { ToastContainer } from "react-toastify";
 import Rasim from "./pages/Rasim/Rasim";
+import Profile from "./pages/Profile/Profile";
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/oneinfo/:id" element={<OneInfo />} />
           <Route path="/rasim/:id" element={<Rasim />} />
+          <Route path="/profile" element={<Profile />} />
           
           
         </Routes>
