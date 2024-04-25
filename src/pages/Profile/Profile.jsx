@@ -46,7 +46,7 @@ const Profile = () => {
                                         <div>
                                             <label for="address">Shaharni tanlash</label>
 
-                                            <select required id="address" name='address'>
+                                            <select  required id="address" name='address'>
                                                 <option value="bektemir">Toshkent, Bektemir tumani</option>
                                                 <hr />
                                                 <option value="chilonzor">Toshkent, Chilonzor tumani</option>
