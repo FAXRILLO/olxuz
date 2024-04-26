@@ -7,10 +7,13 @@ export const InfoProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("profile")) || null
   );
+  const [loading, setLoading] = useState(false);
 
   const value = {
     currentUser,
     setCurrentUser,
+    loading,
+    setLoading,
   };
   
 

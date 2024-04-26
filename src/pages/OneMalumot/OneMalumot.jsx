@@ -12,7 +12,7 @@ const OneMalumot = () => {
         <div className="row">
             <div className="box">
                 <Link className='link' to="/">
-                    <h2 className='h2'><i class="i fa-sharp fa-solid fa-circle-arrow-left"></i> Orqaga</h2>
+                    <h2 className='h2'><i className="i fa-sharp fa-solid fa-circle-arrow-left"></i> Orqaga</h2>
                 </Link>
                 
                 <div className="page1">
@@ -27,7 +27,7 @@ const OneMalumot = () => {
                             <div className="carousel-inner">
                                 {res.img.map((res) => {
                                     return (
-                                        <Link to="/rasim" className="carousel-item active">
+                                        <Link className="carousel-item active">
                                         <img src={res} className="d-block w-100" alt="..." />
                                         </Link>
                                     )
@@ -52,7 +52,7 @@ const OneMalumot = () => {
                                 </div>
                                 <h4 className='h4'>{res.content}</h4>
                                 <h3 className='prise'>{res.price}</h3>
-                                <button className='btn_xabar'>Xabar yozish</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className='btn_xabar'>Xabar yozish</button>
                                 <br />
                                 <button className='btn_tel'><i className="fa-sharp fa-solid fa-phone-volume"></i>{res.phone}</button>
                             </div>
@@ -143,7 +143,7 @@ const OneMalumot = () => {
                                 </div>
                                 <div  className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div className="malumotnomer">
-                                        <button className='habar'>Xabar yozish</button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className='habar'>Xabar yozish</button>
                                         <div className="nomer">
                                             <i className="fa-sharp fa-solid fa-phone-volume"></i>
                                             <h4 className='h4x'>{res.phone}</h4>
@@ -376,9 +376,39 @@ const OneMalumot = () => {
                 </div>
                 <div className="page5">
                     <h3 className='elon'>O'xshash e'lonlar</h3>
-                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
+                    <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div className="carousel-inner">
+                            
+                                    {/* {data.length > 0 ? data.map(res => {
+                                        return <div className="carousel-item active">
+                                            <div className="row">
+                                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                <div className="images d-flex">
+                                                <div className="img1">
+                                                        <Link to={`/oneinfo/${res.id}`} className="card">
+                                                            <img className='image' src={res.img[0]} alt="img" />
+                                                            <div className="page">
+                                                                <div className="boz">
+                                                                    <h5 className='info'> {res.content}</h5>
+                                                                    <i className="fa-regular fa-heart"></i>
+                                                                </div>
+                                                                <p className='prise'>{res.price}</p>
+                                                                <br />
+                                                                <span className='city'>{res.location}</span>
+                                                                <br />
+                                                                <span className='data'>4.12.2024</span>
+                                                            </div>
+                                                        </Link>
+                                                </div>
+                                            </div>    
+                                            </div> 
+                                            </div>
+                                        
+                                    </div>
+                                            
+                                    }) : <h2>Tavar yo'q</h2>} */}
+                                
+                            <div className="carousel-item active">
                                 <div className="images d-flex">
                                     <div className="img1">
                                             <Link to="/oneinfo" className="card">
@@ -446,7 +476,7 @@ const OneMalumot = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div class="carousel-item">
+                            <div className="carousel-item">
                                 <div className="images d-flex">
                                     <div className="img1">
                                             <Link to="/oneinfo" className="card">
@@ -514,7 +544,7 @@ const OneMalumot = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div class="carousel-item">
+                            <div className="carousel-item">
                                 <div className="images d-flex">
                                     <div className="img1">
                                             <Link to="/oneinfo" className="card">
@@ -583,18 +613,44 @@ const OneMalumot = () => {
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Next</span>
                         </button>
                         </div>
                 </div>
             </div>
         </div>
+        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <img className='modimg' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
+                        <h5 className="modal-title" id="exampleModalLabel">{res.userName}</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="box d-flex">
+                            <img className='img11' src={res.img[0]} alt="" />
+                            <div className="p">
+                                <p className='text-truncate'>{res.content}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-footerr">
+                        <div className="box1">
+                            <i class="fa-solid fa-image"></i>
+                            <i class="fa-solid fa-pencil"></i>
+                            <input className='inputt' type="text" placeholder='Xabaringizni yozing...' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
       </div>
     </div>
   )
