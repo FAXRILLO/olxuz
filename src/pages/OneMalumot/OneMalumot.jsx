@@ -2,10 +2,27 @@ import React from 'react'
 import "./OneMalumot.scss"
 import { Link, useParams } from 'react-router-dom'
 import {data} from "../../data"
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { getOneProd } from '../../api/getRequests'
 
 const OneMalumot = () => {
     const id = useParams().id;
     const res = data.filter((res) => res.id == id)[0];
+    
+    const [prod, setProd] = useState(null)
+
+    useEffect(() => {
+        const getOne = async () => {
+            try {
+                const res = await getOneProd(id, "car")
+                setProd(res.data.prod)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getOne()
+    })
   return (
     <div className='onemalumot'>
       <div className="container">
