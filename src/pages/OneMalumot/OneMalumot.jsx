@@ -657,17 +657,34 @@ const OneMalumot = () => {
                                 <p className='text-truncate'>{res.content}</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="modal-footerr">
-                        <div className="box1">
-                            <i class="fa-solid fa-image"></i>
-                            <i class="fa-solid fa-pencil"></i>
-                            <input className='inputt' type="text" placeholder='Xabaringizni yozing...' />
+                        <div className="message">
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-date'>san</span>
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-text'>mijoz</span>
+                            <span className='message-text'>mijoz</span>
                         </div>
                     </div>
+                    <div className="modal-footerr">
+                            <input name='image' type="file" className="message-file-input" placeholder='reasim' />
+                            <input className='input-message' type="text" placeholder='malumot yozing' />
+                            <button className="send-btn button">send</button>
+
+                    </div>
+                    
                 </div>
             </div>
-            </div>
+        </div>
       </div>
     </div>
   )

@@ -13,6 +13,7 @@ import Menyu from "./pages/Menyu/Menyu";
 import { ToastContainer } from "react-toastify";
 import Rasim from "./pages/Rasim/Rasim";
 import Profile from "./pages/Profile/Profile";
+import Like from "./pages/Like/Like";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/oneinfo/:id" element={<OneInfo />} />
           <Route path="/rasim/:id" element={<Rasim />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/like" element={<Like />} />
           
           
         </Routes>
