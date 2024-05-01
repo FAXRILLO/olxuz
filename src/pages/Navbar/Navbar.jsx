@@ -36,7 +36,9 @@ const Navbar = () => {
           </li>
        </Link>
         </ul>
-        <button className="ad">E‘lon berish</button>
+       <Link to={"/addElon"}>
+       <button className="ad">E‘lon berish</button>
+       </Link>
         
       </div> 
       </form>
