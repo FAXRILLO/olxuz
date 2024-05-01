@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import Rasim from "./pages/Rasim/Rasim";
 import Profile from "./pages/Profile/Profile";
 import Like from "./pages/Like/Like";
+import Cars from "./pages/Cars/Cars";
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/rasim/:id" element={<Rasim />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/like" element={<Like />} />
+          <Route path="/cars" element={<Cars />} />
           
           
         </Routes>

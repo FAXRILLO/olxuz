@@ -3,11 +3,16 @@ import "./HomeData.scss"
 import { Link, useParams } from "react-router-dom";
 import {data} from "../../data"
 import { useInfoContext } from '../../context/Context';
+import { useEffect } from 'react';
+import { logDOM } from '@testing-library/react';
 
 const HomeData = () => {
     const id = useParams().id;
     const res = data.filter((res) => res.id == id)[0];
     const {cards} = useInfoContext()
+
+
+
     return (
         <div className='homedata'>
             <div className="container">
@@ -37,9 +42,10 @@ const HomeData = () => {
 
 
                                 {data.length > 0 ? data.map(res=> {
+                                    console.log(cards);
                                     return  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                                         <Link to={`/oneinfo/${res.id}`} className="card">
-                                            <img className='image' src={res.img[0]} alt="img" />
+                                            <img className='image' src={res?.img[0]} alt="img" />
                                             <div className="page">
                                                 <div className="boz">
                                                     <h5 className='info'> {res.content}</h5>

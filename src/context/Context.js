@@ -11,6 +11,8 @@ export const InfoProvider = ({ children }) => {
   );
   const [loading, setLoading] = useState(false);
   const [cards, serCards] = useState([])
+  const [selectProd, setSelectProd] = useState([]);
+
 
   useEffect(() => {
     const getCars = async () => {
@@ -32,6 +34,7 @@ export const InfoProvider = ({ children }) => {
     setLoading,
     cards,
     serCards,
+    selectProd, setSelectProd
   };
   
   

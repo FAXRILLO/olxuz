@@ -7,8 +7,10 @@ const Like = () => {
   return (
     <div className='linke'>
       <Navbar />
-        <div className="box">
-            <div className="container-fluid">
+        <div className="container">
+            <div className="row">
+                <div className="box">
+            <div className="container">
                 <h2 className='fh2'>Сараланган эълонлар</h2>    
                 <div className="fff">
                     <div className="row">
@@ -20,8 +22,8 @@ const Like = () => {
                     
                 </div>
             </div>
-        </div>
-        <div className="box1">
+                </div>
+                <div className="box1">
             <div className="containe">
                 {/* <h3 className='text'>Kirish, saralangan e‘lonlar va qidiruv natij   alarini saqlash uchun</h3> */}
                 <div className="cards">
@@ -35,6 +37,8 @@ const Like = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
