@@ -10,6 +10,6 @@ export const getAll = ({ method }) => {
   return API.get(`/api/${method}`);
 };
 
-export const getOne = (id, { method }) => {
-  return API.get(`/api/${method}/${id}`);
+export const getOneProd = (id, { method }) => {
+  return API.get(`/api/${method}/:${id}`);
 };
