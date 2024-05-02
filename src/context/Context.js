@@ -18,6 +18,7 @@ export const InfoProvider = ({ children }) => {
     const getCars = async () => {
       try {
         const res = await getAll("car")
+        console.log(res);
         serCards(res.data.getAll)
       } catch (error) {
         console.log(error);
@@ -34,7 +35,8 @@ export const InfoProvider = ({ children }) => {
     setLoading,
     cards,
     serCards,
-    selectProd, setSelectProd
+    selectProd, setSelectProd,
+    
   };
   
   

@@ -20,10 +20,10 @@ const HomeData = () => {
                     <div className="box">
                         <h2 className='h2'>Премиум объявления</h2>
                         <div className="row">
-                                {/* {cards.length > 0 ? cards.map(card => {
+                                {cards.length > 0 ? cards.map(card => {
                                     return  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                                         <Link to={`/oneinfo/${card.id}`} className="card">
-                                            <img className='image' src={card.img[0]} alt="img" />
+                                            <img className='image' src={card.photos[0]} alt="img" />
                                             <div className="page">
                                                 <div className="boz">
                                                     <h5 className='info'> {card.content}</h5>
@@ -37,11 +37,11 @@ const HomeData = () => {
                                             </div>
                                         </Link >
                                     </div>
-                                }) : <h2>Tavar yo'q</h2>} */}
+                                }) : <h2>Tavar yo'q</h2>}
 
 
 
-                                {data.length > 0 ? data.map(res=> {
+                                {/* {data.length > 0 ? data.map(res=> {
                                     console.log(cards);
                                     return  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                                         <Link to={`/oneinfo/${res.id}`} className="card">
@@ -59,7 +59,7 @@ const HomeData = () => {
                                             </div>
                                         </Link >
                                     </div>
-                                }) : <h2>Tavar yo'q</h2>}
+                                }) : <h2>Tavar yo'q</h2>} */}
                         </div>
                     </div>
                 </div>

@@ -13,15 +13,9 @@ import Menyu from "./pages/Menyu/Menyu";
 import { ToastContainer } from "react-toastify";
 import Rasim from "./pages/Rasim/Rasim";
 import Profile from "./pages/Profile/Profile";
-<<<<<<< HEAD
 import AddElon from "./pages/AddElon/AddElon";
-=======
 import Like from "./pages/Like/Like";
-<<<<<<< HEAD
 import Cars from "./pages/Cars/Cars";
-=======
->>>>>>> c6871e92c2bcdaa36a413a3e103dc3860b6223c1
->>>>>>> 314703af418a1700bac31d2e6faedc01636650bd
 
 
 const App = () => {
@@ -37,15 +31,13 @@ const App = () => {
           <Route path="/oneinfo/:id" element={<OneInfo />} />
           <Route path="/rasim/:id" element={<Rasim />} />
           <Route path="/profile" element={<Profile />} />
-<<<<<<< HEAD
+
           <Route path="/addElon" element={<AddElon />} />
-=======
+
           <Route path="/like" element={<Like />} />
-<<<<<<< HEAD
+
           <Route path="/cars" element={<Cars />} />
-=======
->>>>>>> c6871e92c2bcdaa36a413a3e103dc3860b6223c1
->>>>>>> 314703af418a1700bac31d2e6faedc01636650bd
+
           
           
         </Routes>
