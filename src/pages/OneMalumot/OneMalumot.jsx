@@ -10,12 +10,14 @@ import { getOneProd } from '../../api/getRequests'
 const OneMalumot = () => {
     const categiryId = useParams().id;
     const res = data.filter((res) => res.categiryId == categiryId)[0];
+    const [modal, setModal] = useState(false)
 
     const [category, setCategory] = useState()
     useEffect(() => {
         const getCategory = async() => {
           try {
             const res = await getOneProd(categiryId, 'car')
+            // console.log(res);
             toast.dismiss()
             setCategory(res.data.getOne[0])
           } catch (error) {
@@ -87,9 +89,9 @@ const OneMalumot = () => {
                                         </div>
                                         <h4 className='h4'>{category?.content}</h4>
                                         <h3 className='prise'>{category?.name}</h3>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className='btn_xabar'>Xabar yozish</button>
+                                        <button type="button" className='btn_xabar' onClick={() => setModal(true)}>Xabar yozish</button>
                                         <br />
-                                        <button className='btn_tel'><i className="fa-sharp fa-solid fa-phone-volume"></i>{category?.photo}</button>
+                                        <button className='btn_tel'><i className="fa-sharp fa-solid fa-phone-volume"></i>{category?.phone}</button>
                                     </div>
                                     <div style={{ backgroundColor: "white", }} className="about2">
                                         <h6 className='h6'>Foydalanuvchi</h6>
@@ -113,7 +115,7 @@ const OneMalumot = () => {
                             </div>
                         </div>
 
-                        {/* <div className="page2">
+                        <div className="page2">
                             <div className="row">
                                 <div style={{ backgroundColor: "white", }} className="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
                                     <div className="malumotlarpage">
@@ -126,14 +128,14 @@ const OneMalumot = () => {
                                             <button className='malumotbtn'>Model: {category?.name}</button>
                                             <button className='malumotbtn'>Narxi: {category?.price}</button>
                                             <button className='malumotbtn'>Ishlab chiqarilgan yili: {category?.year}</button>
-                                            <button className='malumotbtn'>Bosgan yo‘li: {res?.run}</button>
-                                            <button className='malumotbtn'>Uzatmalar qutisi: Avtomatik</button>
-                                            <button className='malumotbtn'>Rang: {res?.color}</button>
-                                            <button className='malumotbtn'>Dvigatel hajmi: {res?.engine}</button>
-                                            <button className='malumotbtn'>Yoqilg‘i turi: bezin</button>
-                                            <button className='malumotbtn'>Mashina holati:yahshi</button>
-                                            <button className='malumotbtn'>Mulkdorlar soni: 1</button>
-                                            <button className='malumotbtn'>Qo‘shimcha optsiyalar: Охоронна система, Elektrko‘zgular, El. oyna ko‘targichlar, Konditsioner</button>
+                                            <button className='malumotbtn'>Bosgan yo‘li: {category?.run}</button>
+                                            <button className='malumotbtn'>Uzatmalar qutisi: {category?.transmission}</button>
+                                            <button className='malumotbtn'>Rang: {category?.color}</button>
+                                            <button className='malumotbtn'>Dvigatel hajmi: {category?.engine}</button>
+                                            <button className='malumotbtn'>Yoqilg‘i turi: {category?.type_of_fuel}</button>
+                                            <button className='malumotbtn'>Mashina holati:{category?.capacity}</button>
+                                            <button className='malumotbtn'>Mulkdorlar soni: {category?.number_of_hosts}</button>
+                                            <button className='malumotbtn'>{category?.options}</button>
                                         </div>
                                         <h1 className='h1_1'>TAVSIF</h1>
                                         <p className='pmalumot'>{res?.content}</p>
@@ -145,9 +147,8 @@ const OneMalumot = () => {
                                         <div className="row">
                                             <div className="col-6">
                                                 <h4 className='h4_2'><i className="fa-solid fa-location-dot"></i>
-                                                    {res?.location}
+                                                    {category?.location}
                                                 </h4>
-                                                <small className='small'>{res?.location}</small>
                                             </div>
                                             <div className="col-6">
                                                 <img className='img1' src="https://i.ytimg.com/vi/U42ICAgFUJQ/sddefault.jpg" alt='img' />
@@ -156,8 +157,8 @@ const OneMalumot = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div> */}
-                        {/* <div className="page3">
+                        </div>
+                        <div className="page3">
                             <div className="row">
                                 <div style={{ backgroundColor: "white", }} className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div className="row">
@@ -169,7 +170,7 @@ const OneMalumot = () => {
                                                         <img className='userimg2' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
                                                     </div>
                                                     <div className="col-10">
-                                                        <span className='name'>{res?.userName}</span>
+                                                        <span className='name'>{category?.author}</span>
                                                         <h6 className='p1'>OLXda 2022 M11 beri</h6>
                                                         <h6 className='p1'>So'ngi faollik 2024 M04 15</h6>
                                                     </div>
@@ -178,10 +179,10 @@ const OneMalumot = () => {
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                             <div className="malumotnomer">
-                                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className='habar'>Xabar yozish</button>
+                                                <button onClick={() => setModal(true)} className='habar'>Xabar yozish</button>
                                                 <div className="nomer">
                                                     <i className="fa-sharp fa-solid fa-phone-volume"></i>
-                                                    <h4 className='h4x'>{res?.phone}</h4>
+                                                    <h4 className='h4x'>{category?.phone}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -414,34 +415,6 @@ const OneMalumot = () => {
                             <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false" data-bs-interval="false">
                                 <div className="carousel-inner">
 
-                                    {data.length > 0 ? data.map(res => {
-                                        return <div className="carousel-item active">
-                                            <div className="row">
-                                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                                                <div className="images d-flex">
-                                                <div className="img1">
-                                                        <Link to={`/oneinfo/${res.id}`} className="card">
-                                                            <img className='image' src={res.img[0]} alt="img" />
-                                                            <div className="page">
-                                                                <div className="boz">
-                                                                    <h5 className='info'> {res.content}</h5>
-                                                                    <i className="fa-regular fa-heart"></i>
-                                                                </div>
-                                                                <p className='prise'>{res.price}</p>
-                                                                <br />
-                                                                <span className='city'>{res.location}</span>
-                                                                <br />
-                                                                <span className='data'>4.12.2024</span>
-                                                            </div>
-                                                        </Link>
-                                                </div>
-                                            </div>    
-                                            </div> 
-                                            </div>
-                                        
-                                    </div>
-                                            
-                                    }) : <h2>Tavar yo'q</h2>}
 
                                     <div className="carousel-item active">
                                         <div className="images d-flex">
@@ -657,52 +630,54 @@ const OneMalumot = () => {
                                     <span className="visually-hidden">Next</span>
                                 </button>
                             </div>
-                        </div> */}
-                    </div>
-                </div>
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <img className='modimg' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
-                                <h5 className="modal-title" id="exampleModalLabel">{res?.userName}</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="box d-flex">
-                                    <img className='img11' src={category?.photos[0]} alt="" />
-                                    <div className="p">
-                                        {/* <p className='text-truncate'>{res.content}</p> */}
-                                    </div>
-                                </div>
-                                <div className="message">
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-date'>san</span>
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-text'>mijoz</span>
-                                    <span className='message-text'>mijoz</span>
-                                </div>
-                            </div>
-                            <div className="modal-footerr">
-                                <input name='image' type="file" className="message-file-input" placeholder='reasim' />
-                                <input className='input-message' type="text" placeholder='malumot yozing' />
-                                <button className="send-btn button">send</button>
-
-                            </div>
-
                         </div>
                     </div>
                 </div>
+               {
+                modal &&  <div className="modal-box">
+                <div className="modal-box1">
+                    <div className="modal-box2">
+                        <div className="modal-header">
+                            <img className='modimg' src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="img" />
+                            <h5 className="modal-title" id="exampleModalLabel">{category?.author}</h5>
+                            <button type="button" className="btn-close" onClick={() => setModal(false)}></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="box d-flex">
+                                <img className='img11' src={category?.photos[0].url} alt="" />
+                                <div className="p">
+                                    <p className='text-truncate'>{category?.name}</p>
+                                </div>
+                            </div>
+                            <div className="message">
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-date'>san</span>
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-text'>mijoz</span>
+                                <span className='message-text'>mijoz</span>
+                            </div>
+                        </div>
+                        <div className="modal-footerr">
+                            <input name='image' type="file" className="message-file-input" placeholder='reasim' />
+                            <input className='input-message' type="text" placeholder='malumot yozing' />
+                            <button className="send-btn button">send</button>
+
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+               }
             </div>
         </div>
     )

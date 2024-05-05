@@ -16,6 +16,7 @@ import Profile from "./pages/Profile/Profile";
 import AddElon from "./pages/AddElon/AddElon";
 import Like from "./pages/Like/Like";
 import Cars from "./pages/Cars/Cars";
+import Chat from "./pages/Chat/Chat";
 
 
 const App = () => {
@@ -37,6 +38,8 @@ const App = () => {
           <Route path="/like" element={<Like />} />
 
           <Route path="/cars" element={<Cars />} />
+
+          <Route path="/chat" element={<Chat />} />
 
           
           

@@ -21,19 +21,20 @@ const HomeData = () => {
                         <h2 className='h2'>Премиум объявления</h2>
                         <div className="row">
                                 {cards.length > 0 ? cards.map(card => {
+                                    console.log(cards);
                                     return  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-                                        <Link to={`/oneinfo/${card.id}`} className="card">
-                                            <img className='image' src={card.photos[0]} alt="img" />
+                                        <Link to={`/oneinfo/${card._id}`} className="card">
+                                            <img className='image' src={card.photos[0].url} alt="img" />
                                             <div className="page">
                                                 <div className="boz">
-                                                    <h5 className='info'> {card.content}</h5>
+                                                    <h5 className='info'> {card.name}</h5>
                                                     <i class="fa-regular fa-heart"></i>
                                                 </div>
                                                 <p className='prise'>{card.price}</p>
                                                 <br />
                                                 <span className='city'>{card.location}</span>
                                                 <br />
-                                                <span className='data'>4.12.2024</span>
+                                                <span className='data'>{card?.year}</span>
                                             </div>
                                         </Link >
                                     </div>

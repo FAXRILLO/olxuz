@@ -444,11 +444,21 @@
             }
         }
     }
-    .modal{
+    .modal-box{
+        z-index: 9999;
+        top: 20%;
+        right: 0;
+        position: fixed;
+        margin-left: auto;
+        box-shadow: 0 0 10px black;
+        border-radius: 10px;
+        padding: 10px;
+        width: 40%;
+        background-color: white;
         text-align: right;
         background-color: none;
-        .modal-dialog{
-            .modal-content{
+        .modal-box1{
+            .modal-box2{
                 .modal-header{
                     .modal-title{
                         font-size: 25px;
@@ -457,6 +467,12 @@
                         
                         
                     }   
+                    .btn-close{
+                        text-align: right;
+                        margin-left: auto;
+                        font-size: 20px;
+                        color: black;
+                    }
                     .modimg{
                         padding-right: 10px;
                         width: 40px;
@@ -464,6 +480,7 @@
                     } 
                 } 
                 .modal-body{
+                    margin: 10px 0;
                     overflow: hidden;
                     overflow-y: scroll;
                     background-color: rgb(252, 252, 252);
@@ -498,6 +515,7 @@
                             margin-top: 5px;
                             width: 40%;
                             padding: 5px;
+                            margin-right: auto;
                             border-radius: 5px;
                         }
                         .message-date{
@@ -971,6 +989,58 @@
                                     }
                                 }    
                             }
+                        }
+                    }
+                }
+            }
+        }
+        .modal-box{
+            z-index: 9999;
+            top: 20%;
+            right: 0;
+            position: fixed;
+            margin-left: auto;
+            box-shadow: 0 0 10px black;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: white;
+            text-align: right;
+            background-color: none;
+            .modal-box1{
+                .modal-box2{
+                    .modal-footerr{
+                        padding: 5px;
+                        display: block;
+                        align-items: center;
+                        gap: 20px;
+                        justify-content: space-between;
+                        .send-btn{
+                            width: 100%;
+                            padding: 5px;
+                            font-size: 15px;
+                            font-weight: bold;
+                            border-radius: 5px;
+                            border: none;
+                            background-color: blue;
+                            color: white;
+                        }
+                        .input-message{
+                            display: block;
+                            width: 100%;
+                            margin: 5px 0;
+                            padding: 5px;
+                            border-radius: 5px;
+                            border: 1px solid black;
+                        }
+                        .message-file-input{
+                            padding: 5px;
+                            width: 100%;
+                            border-radius: 5px;
+                            background: rgb(182, 179, 179);
+                            font-size: 20px;
+                            font-weight: 400;
+                            font-size: 12px;
                         }
                     }
                 }
