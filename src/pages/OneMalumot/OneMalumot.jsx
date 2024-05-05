@@ -81,6 +81,7 @@ const OneMalumot = () => {
                                         </button>
                                     </div>
                                 </div>
+                                
                                 <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
                                     <div style={{ backgroundColor: "white", }} className="about">
                                         <div className="sana">
