@@ -12,8 +12,7 @@ export const deleteAll = (id) => {
 }
 
 
-export const deleteUser = (id) => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    return API.delete(`/api/user/:${id}`, { headers: { token } });
-}
+export const getAllUsers = () => API.get(`/api/user`);
+
+export const getUser = (id) => API.get(`/api/user/${id}`);
 
