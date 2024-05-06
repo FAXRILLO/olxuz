@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAll } from "../api/getRequests";
+
+
+import { getAll, getProd } from "../api/getRequests";
+
 
 const InfoContext = createContext();
 
@@ -7,42 +10,62 @@ export const useInfoContext = () => useContext(InfoContext);
 
 export const InfoProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("profile")) || null
+    JSON.parse(localStorage.getItem("profile") || null)
   );
-  const [loading, setLoading] = useState(false);
-  const [cards, serCards] = useState([])
-  const [selectProd, setSelectProd] = useState([]);
 
+
+  const [category, setCategory] = useState([]);
+  const [cards, setCards] = useState([])
+  const [sub, setSub] = useState([]);
+  const [type, setType] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [currentChat, setcurrentChat] = useState(null);
+  const [chats, setChats] = useState([]);
+
+  const exit = () => {
+    localStorage.clear();
+    setCurrentUser(null);
+  };
 
   useEffect(() => {
-    const getCars = async () => {
+    let myFunc = async () => {
       try {
-        const res = await getAll("car")
-        console.log(res);
-        serCards(res.data.getAll)
+        const resCar = await getAll("car");
+        const resWork = await getAll("work");
+        const resFashion = await getAll("fashion");
+        const resCategory = await getAll("category");
+        const resSub = await getAll("sub");
+        const resType = await getAll("type");
+        setCategory(resCategory?.data?.categorys);
+        setSub(resSub?.data?.getAll);
+        setType(resType?.data?.getAll);
+        setCards([
+          ...resCar?.data?.getAll,
+          ...resFashion?.data?.getAll,
+          ...resWork?.data?.getAll,
+        ]);
       } catch (error) {
         console.log(error);
       }
-    }
-    getCars();
-  }, [currentUser])
+    };
 
+    myFunc();
+  }, [currentUser]);
 
   const value = {
     currentUser,
     setCurrentUser,
-    loading,
-    setLoading,
+    exit, category, setCategory,
+    sub, setSub,
+    type, setType,
+
+
+    exit,
     cards,
-    serCards,
-    selectProd, setSelectProd,
-    
+    setCards,
+
+
   };
-  
-  
-  return (
-    <InfoContext.Provider value={value}>
-      <InfoContext.Consumer>{() => children}</InfoContext.Consumer>
-    </InfoContext.Provider>
-  );
+
+  return <InfoContext.Provider value={value}>{children}</InfoContext.Provider>;
 };

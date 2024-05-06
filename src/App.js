@@ -13,10 +13,10 @@ import Menyu from "./pages/Menyu/Menyu";
 import { ToastContainer } from "react-toastify";
 import Rasim from "./pages/Rasim/Rasim";
 import Profile from "./pages/Profile/Profile";
-import AddElon from "./pages/AddElon/AddElon";
 import Like from "./pages/Like/Like";
 import Cars from "./pages/Cars/Cars";
 import Chat from "./pages/Chat/Chat";
+import AddProd from "./pages/AddProd/AddProd";
 
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/rasim/:id" element={<Rasim />} />
           <Route path="/profile" element={<Profile />} />
 
-          <Route path="/addElon" element={<AddElon />} />
+          <Route path="/addProd" element={<AddProd />} />
 
           <Route path="/like" element={<Like />} />
 
