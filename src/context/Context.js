@@ -14,6 +14,21 @@ export const InfoProvider = ({ children }) => {
   const [selectProd, setSelectProd] = useState([]);
 
 
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+  const [settings, setSettings] = useState(false);
+  
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
+  const exit = () => {
+    localStorage.clear();
+    setCurrentUser(null);
+    setCurrentChat(null);
+  };
+
+
   useEffect(() => {
     const getCars = async () => {
       try {
@@ -35,8 +50,22 @@ export const InfoProvider = ({ children }) => {
     setLoading,
     cards,
     serCards,
-    selectProd, setSelectProd,
-    
+    selectProd, 
+    setSelectProd,
+    onlineUsers,
+    setOnlineUsers,
+    chats,
+    setChats,
+    currentChat,
+    setCurrentChat,
+    open,
+    setOpen,
+    userInfo,
+    setUserInfo,
+    settings,
+    setSettings,
+    exit,
+    serverUrl
   };
   
   
