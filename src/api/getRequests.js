@@ -13,3 +13,4 @@ export const getAll = (method) => {
 export const getOneProd = (id, method) => {
   return API.get(`/api/${method}/${id}`);
 };
+export const getSimilar = (method, name) => API.get(`/api/${method}`, {},{params: {name}}); 

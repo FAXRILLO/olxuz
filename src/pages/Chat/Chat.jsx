@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar/Navbar'
 import { useInfoContext } from "../../context/Context";
-import { toast } from "react-toastify";
 import { io } from "socket.io-client";
+import {userChats} from "../../api/chatRequest"
 import "./Chat.scss"
 import { deleteAll, getAllUsers,getUser } from "../../api/deleteRequests";
 import Userlar from '../Userlar/Userlar';
@@ -13,55 +13,56 @@ const socket = io(serverUrl);
 
 
 const Chat = () => {
+    const {chats, exit, setChats, currentUser,  currentChat, setCurrentChat, setOnlineUsers} = useInfoContext()
     const [sendMessage, setSendMessage] = useState(null);
     const [answerMessage, setAnswerMessage] = useState(null);
-    const {
-        exit,
-        currentUser,
-        chats,
-        setChats,
-        setCurrentChat,
-        setOnlineUsers,
-        open,
-        currentChat,
-        settings,
-        setSettings,
-    } = useInfoContext();
+    const [deleted, setDeleted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [socketDel, setSocketDel] = useState(false);
+    const [chat, setChat] = useState(0);
+
     
-    useEffect(() => {
-        const getChats = async () => {
+    useEffect(()=>{
+        const getchats = async () => {
           try {
-            const res = await getAllUsers();
-            setChats(res.data.chats);
+            const res = await userChats()
+            setChats(res?.data.chats);
           } catch (error) {
-            if (error?.response?.data.message === "jwt expired") {
-              exit();
+            console.log(error);
+            if(error?.response?.data.message === 'jwt expired'){
+              exit()
             }
           }
-        };
-    
-        getChats();
-    }, [currentUser._id]);
-    
-      useEffect(() => {
-        socket.emit("new-user-added", currentUser._id);
-    
-        socket.on("get-users", (users) => {
-          setOnlineUsers(users);
-        });
-      }, [currentUser._id]);
-    
-      useEffect(() => {
-        if (sendMessage !== null) {
-          socket.emit("send-message", sendMessage);
         }
-      }, [sendMessage]);
+        getchats()
+      },[currentUser._id, loading])
     
+      useEffect(() => { 
+        socket.emit("new-user-added", currentUser._id); 
+     
+        socket.on("get-users", (users) => { 
+          setOnlineUsers(users); 
+        }); 
+      }, [currentUser._id,]); 
+     
+      useEffect(() => { 
+        if (sendMessage !== null) { 
+          socket.emit("send-message", sendMessage); 
+        } 
+        socket.on("answer-message", (data) => { 
+          setAnswerMessage(data); 
+        }); 
+      }, [sendMessage]); 
+     
       useEffect(() => {
-        socket.on("answer-message", (data) => {
-          setAnswerMessage(data);
-        });
-      }, []);
+        if(deleted && socketDel){
+          setSocketDel(false)
+          socket.emit('delete-message')
+        }
+        socket.on('deleted', () => {
+          setDeleted(!deleted)
+        })
+      }, [deleted]);
     
     return (
     <div className='chat'>

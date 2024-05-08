@@ -502,7 +502,7 @@
                         }
                     }
                     .message{
-                        padding: 5px 0px;
+                        padding: 5px 5px;
                         width: 100%;
                         border-radius: 8px 8px 8px 0;
                         margin-bottom: 10px;
@@ -536,29 +536,71 @@
                     align-items: center;
                     gap: 20px;
                     justify-content: space-between;
-                    .send-btn{
-                        padding: 5px;
-                        font-size: 15px;
-                        font-weight: bold;
-                        border-radius: 5px;
-                        border: none;
-                        background-color: blue;
-                        color: white;
+                    .input-form{
+                        .send-file{
+                            .fa-solid{
+                              
+                            }    
+                        }
+                        .input-message{
+                            margin-left: 10px;
+                            padding: 4px 10px;
+                            border-radius: 5px;
+                            border: 1px solid #002f34;
+                        }
+                        .send-btn{
+                            padding: 5px 10px;
+                            margin-left: 10px;
+                            font-size: 15px;
+                            font-weight: bold;
+                            border-radius: 5px;
+                            border: none;
+                            background-color: blue;
+                            color: white;
+                        }
                     }
-                    .input-message{
-                        width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 816px) {
+    .onemalumot{
+        .modal-box{
+            .modal-box1{
+                .modal-box2{
+                    .modal-footerr{
                         padding: 5px;
-                        border-radius: 5px;
-                        border: 1px solid black;
-                    }
-                    .message-file-input{
-                        padding: 5px;
-                        width: 50%;
-                        border-radius: 5px;
-                        background: rgb(182, 179, 179);
-                        font-size: 20px;
-                        font-weight: 400;
-                        font-size: 12px;
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                        justify-content: space-between;
+                        .input-form{
+                            .send-file{
+                                .fa-solid{
+                                  
+                                }    
+                            }
+                            .input-message{
+                                margin-left: 10px;
+                                padding: 4px 10px;
+                                border-radius: 5px;
+                                border: 1px solid #002f34;
+                            }
+                            .send-btn{
+                                margin-top: 5px;
+                                padding: 5px 10px;
+                                margin-left: 10px;
+                                font-size: 15px;
+                                font-weight: bold;
+                                border-radius: 5px;
+                                width: 100%;
+                                border: none;
+                                background-color: blue;
+                                color: white;
+                            }
+                        }
                     }
                 }
             }
@@ -893,6 +935,7 @@
                 }
             }
         }
+        
     }
 }
 @media only screen and (max-width: 570px) {

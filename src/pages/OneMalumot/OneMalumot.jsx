@@ -1,22 +1,36 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import "./OneMalumot.scss"
 import { Link, useParams } from 'react-router-dom'
+import {useInfoContext} from "../../context/Context"
+import {getOneProd, getSimilar} from "../../api/getRequests"
 import { toast } from 'react-toastify'
 import { data } from "../../data"
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { getOneProd } from '../../api/getRequests'
+import {addMessage, getMessage} from "../../api/messageRequests"
+import {findChat, userChats} from "../../api/chatRequest"
+import { StyleProvider } from '@ant-design/cssinjs'
 
 const OneMalumot = () => {
-    const categiryId = useParams().id;
-    const res = data.filter((res) => res.categiryId == categiryId)[0];
+    const id = useParams().id;
+    const res = data.filter((res) => res.categoryId == id)[0];
     const [modal, setModal] = useState(false)
-
     const [category, setCategory] = useState()
+
+    const {card, chat, exit, setChat, currentUser, currentChat, setCurrentChat, onlineUser, } = useInfoContext()
+    const [prod, setProd] = useState(null)
+    const  [tel, setTel] = useState(false)
+    const [simlar, setSimlar] = useState([])
+    const [message, setMessages] = useState([])
+    const [openChat, setOpenChat] = useState(false)
+    const [send, setSend] = useState(false)
+
+    const userId = currentChat?.message?.find(id => id !== currentUser._id)
+
+
+
     useEffect(() => {
         const getCategory = async() => {
           try {
-            const res = await getOneProd(categiryId, 'car')
+            const res = await getOneProd(id, 'car')
             // console.log(res);
             toast.dismiss()
             setCategory(res.data.getOne[0])
@@ -27,21 +41,83 @@ const OneMalumot = () => {
         }
     
         getCategory()
-    }, [categiryId])
-    console.log(category);
-    // useEffect(() => {
-    //     const getOne = async () => {
-    //         try {
-    //             const res = await getOneProd(id, "car")
-    //             console.log(res);
-    //             setProd(res.data.getOne[0])
-    //             console.log(res);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-    //     getOne()
-    // })
+    }, [id])
+
+
+    useEffect(() => {
+        const getOne = async () => {
+            let result = null
+            try {
+                const res = await getOneProd(id, 'car')
+                result = res.data.getOne[0]
+                if(!result) {
+                    const res = await getOneProd(id, "fashion")
+                    result = res.data.getOne[0]
+                }
+                if(result) {
+                    const resSim = await getSimilar('car', result.name)
+                    setSimlar(resSim)
+                    StyleProvider(result)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getOne()
+    }, [id])
+
+    const toggleChat = () => setOpenChat(!openChat)
+
+    useEffect(() => {
+        const userChat = async () => {
+            try {
+                const res = await userChats()
+                setCurrentChat(res.data.chats)
+                const useId = res.data.chats.filter(chat => chat.members.find(id => id === category.user._id))[0]
+                if(useId) {
+                    const {data} = await getMessage(useId._id)
+                    setMessages(data.message)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        if(openChat) {
+            userChat()
+        }
+    }, [currentUser, openChat])
+
+    const handleSend = async (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const {data} = await findChat(category?.user?._id, currentUser._id)
+        setCurrentChat(data?.chat)
+
+        formData.append('senderId', currentUser._id)
+        formData.append('chatId', data.chat._id)
+        formData.append('createdAt', new Date().getTime())
+
+        const newMessage = {
+            senderId: currentUser._id,
+            chatId: currentChat._id,
+            text: formData.get('text'),
+            createdAt: new Date().getTime()
+        }
+        setSend(true)
+
+        try {
+            const {data} = await addMessage(formData)
+            setMessages([...message, data.message])
+            setSend(false)
+            e.target.reset()
+        } catch (error) {
+            console.log(error);
+            if(error?.response?.data.message === "jwt exprired") {
+                exit()
+            }
+        }
+    }
+
     return (
         <div className='onemalumot'>
             <div className="container">
@@ -635,7 +711,7 @@ const OneMalumot = () => {
                     </div>
                 </div>
                {
-                modal &&  <div className="modal-box">
+                modal && currentUser?._id !== category?.user?._id &&  <div className="modal-box">
                 <div className="modal-box1">
                     <div className="modal-box2">
                         <div className="modal-header">
@@ -650,28 +726,27 @@ const OneMalumot = () => {
                                     <p className='text-truncate'>{category?.name}</p>
                                 </div>
                             </div>
-                            <div className="message">
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-date'>san</span>
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-text'>mijoz</span>
-                                <span className='message-text'>mijoz</span>
-                            </div>
+                            {message?.length > 0 ? message.map(chat => {
+                                <div className="message">
+                                    <span className='message-date'>
+                                        {chat?.file && <img style={{width: "100%", height: '300px'}} src={`${chat?.file.url}`} alt="" />}
+                                        {chat?.text}
+                                    </span>
+                                    <span className='message-text'>{new Date(chat.createdAt). toLocaleTimeString().slice(0, 5)}</span>
+                                </div>
+                            }) : <h3>chat yoq</h3>}
+                            
                         </div>
                         <div className="modal-footerr">
-                            <input name='image' type="file" className="message-file-input" placeholder='reasim' />
-                            <input className='input-message' type="text" placeholder='malumot yozing' />
-                            <button className="send-btn button">send</button>
+                            <form onSubmit={handleSend} className="input-form">
+                                <label htmlFor="send-file">
+                                    <i className='fa-solid fa-paperclip'></i>
+                                    <input hidden id='send-file' name='image' type="file" className="message-file-input" />
+
+                                </label>
+                                <input name='text' className='input-message' type="text" placeholder='malumot yozing' />
+                                <button disabled={send} className="send-btn button">send</button>
+                            </form>
 
                         </div>
 
