@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar/Navbar'
-import { useInfoContext } from "../../context/Context";
-import { io } from "socket.io-client";
-import {userChats} from "../../api/chatRequest"
-import "./Chat.scss"
-import Userlar from '../Userlar/Userlar';
+import "./Elon.scss"
 import { Link } from 'react-router-dom'
-import Message from '../Message/Message';
-import Chatbox from './Chatbox';
-import Elon from '../Elon/Elon';
-const serverUrl = process.env.REACT_APP_SERVER_URL;
-const socket = io(serverUrl);
 
-
-const Chat = () => {
-    
-    
-    return (
-    <div className='chat'>
+const Elon = () => {
+  return (
+    <div className='elon'>
         <Navbar />
         <div className="container">
             <div className="row">
@@ -34,15 +22,21 @@ const Chat = () => {
                         <button className='btn2'>To'plam sotib olish</button>
                     </div>
                     <div className="page2">
-                        <button className='sman1'><Link to={"/elon"}>E'lonlar</Link></button>
-                        <button className='sman1'>Sobshena</button>
+                        <button className='sman1'>E'lonlar</button>
+                        <button className='sman1'><Link to={"/chat"}>Sobshena</Link></button>
                         <button className='sman1'><Link to={"/"}>Xabarlar</Link></button>
                         <button className='sman1'><Link to={"/"}>To‘lovlar va OLX hisobi</Link></button>
                         <button className='sman1'><Link to={"/"}>Nomzod profili</Link></button>
                         <button className='sman1'><Link to={"/"}>Sozlamalar</Link></button>
                     </div>
                 </div>
-                <Chatbox />
+                <div className="box2">
+                    <span className='span1_1'>Faol</span>
+                    <span className='span1_1'>Kutayotgan</span>
+                    <span className='span1_1'>To'lanmagan</span>
+                    <span className='span1_1'>Nofaol</span>
+                    <span className='span1_1'>Rad etilgan</span>
+                </div>
             </div>
         </div>
         <Footer />
@@ -50,4 +44,4 @@ const Chat = () => {
   )
 }
 
-export default Chat
+export default Elon

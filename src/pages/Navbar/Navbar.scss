@@ -1,58 +1,348 @@
-.navbar{
-    background-color: rgba($color: #002f34, $alpha: 1.0);
-    color: white;
-    align-items: center;
-    .navbar-brand{
-        img{
-
-            width: 70px;
-            height: 70px;
-        }
-    }
-    .collapse{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        ul{
-            text-align: right;
-            li{
-                a{
-                    color: #ffffff;
-                    margin-left: 18px;
-                    font-family: Geomanist, Arial, sans-serif;
-                    font-size: 16px;
-                    font-weight: 600;
-                    svg{
-                        height: 22px;
-                        width: 22px;
-                        margin-right: 10px;
-                    }
+.navbare{
+    background-color: #002f34;
+    header{
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 17px;
+        width: 100%;
+        max-width: 1440px;
+        .navbar{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 0;
+            .logo{
+              height: 70px;
+              width: 70px;
+              img{
+                height: 100%;
+                width: 100%;
+              }  
+              
+            }
+            .nav-list{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                list-style-type: none;
+                gap: 40px;
+                .icon{
+                    display: none;
                 }
-                .rus{
-                    font-size: 14px;
+                .nav-link{
+                    
+                    .h6{
+                        display: block;
+                        margin-top: 10px;
+                        font-size: 18px;
+                        color: white;
+                    }
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    text-decoration: none;
                     color: white;
-                    font-weight: normal;
+                    &:hover{
+                        color: #7f9799;
+                    }   
                     span{
-                        font-size: 14px;
-                        color: rgb(127, 151, 153);
-                        margin-right: 10px;
+                        color: #7f9799;
+                        font-weight: normal;
+                    }
+                    button{
+                        cursor: pointer;
+                        border: 5px solid white;
+                        background-color: white;
+                        padding: 10px 30px;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #002f34;
+                        &:hover{
+                            background-color: #002f34;
+                            color: white;
+                        }
                     }
                 }
             }
         }
-        button{
-            background-color: white;
-            color: #002f34;
-            font-weight: 700;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: 2px solid white;
+    }
+}
+@media (max-width: 992px){
+    .navbare{
+        background-color: #002f34;
+        header{
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            width: 100%;
+            max-width: 1440px;
+            .navbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 0;
+                .logo{
+                  height: 50px;
+                  width: 50px;
+                  img{
+                    height: 100%;
+                    width: 100%;
+                  }  
+                }
+                .nav-list{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    list-style-type: none;
+                    gap: 20px;
+                    .nav-link{
+                       
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        text-decoration: none;
+                        color: white;
+                        &:hover{
+                            color: #7f9799;
+                        }   
+                        span{
+                            color: #7f9799;
+                            font-weight: normal;
+                        }
+                        button{
+                            cursor: pointer;
+                            border: 5px solid white;
+                            background-color: white;
+                            padding: 5px 10px;
+                            border-radius: 5px;
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #002f34;
+                            &:hover{
+                                background-color: #002f34;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
         }
-        button:hover{
-            background-color: #002f34;
-            color: white;
-            border-radius: 5px;
-            border: 2px solid white;
+    }
+}
+@media (max-width: 767px){
+    .navbare{
+        background-color: #002f34;
+        header{
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 17px;
+            width: 100%;
+            max-width: 1440px;
+            .navbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 0;
+                .logo{
+                  height: 30px;
+                  width: 30px;
+                  img{
+                    display: none;
+                  }  
+                  
+                }
+                .nav-list{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    list-style-type: none;
+                    gap: 40px;
+                    .icon{
+                        color: white;
+                        display: block;
+                        font-size: 12px;
+                      }
+                    .nav-link{
+                        .h6{
+                            display: none;
+                            
+                        }
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        text-decoration: none;
+                        color: white;
+                        &:hover{
+                            color: #7f9799;
+                        }   
+                        font-size: 12px;
+                        span{
+                            color: #7f9799;
+                            font-weight: normal;
+                            font-size: 12px;
+                        }
+                        button{
+                            cursor: pointer;
+                            border: 5px solid white;
+                            background-color: white;
+                            padding: 2px;
+                            border-radius: 5px;
+                            font-size: 10px;
+                            font-weight: bold;
+                            color: #002f34;
+                            &:hover{
+                                background-color: #002f34;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 492px){
+    .navbare{
+        background-color: #002f34;
+        header{
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 10px;
+            width: 100%;
+            max-width: 1440px;
+            .navbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0px 0;
+                .logo{
+                  height: 30px;
+                  width: 30px;
+                  img{
+                    display: none;
+                  }  
+                  display: none;
+                }
+                .nav-list{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    list-style-type: none;
+                    gap: 20px;
+                    .icon{
+                        color: white;
+                        display: block;
+                        font-size: 12px;
+                      }
+                    .nav-link{
+                        .h6{
+                            display: none;
+                            
+                        }
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        text-decoration: none;
+                        color: white;
+                        &:hover{
+                            color: #7f9799;
+                        }   
+                        font-size: 12px;
+                        span{
+                            color: #7f9799;
+                            font-weight: normal;
+                            font-size: 12px;
+                        }
+                        button{
+                            cursor: pointer;
+                            border: 5px solid white;
+                            background-color: white;
+                            padding: 2px;
+                            border-radius: 5px;
+                            font-size: 10px;
+                            font-weight: bold;
+                            color: #002f34;
+                            &:hover{
+                                background-color: #002f34;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 381px){
+    .navbare{
+        background-color: #002f34;
+        header{
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 10px;
+            width: 100%;
+            max-width: 1440px;
+            .navbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 0;
+                .logo{
+                  height: 30px;
+                  width: 30px;
+                  img{
+                    display: none;
+                  }  
+                  display: none;
+                }
+                .nav-list{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    list-style-type: none;
+                    gap: 15px;
+                    .icon{
+                        color: white;
+                        display: block;
+                        font-size: 12px;
+                      }
+                    .nav-link{
+                        .h6{
+                            display: none;
+                            
+                        }
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        text-decoration: none;
+                        color: white;
+                        &:hover{
+                            color: #7f9799;
+                        }   
+                        font-size: 12px;
+                        span{
+                            color: #7f9799;
+                            font-weight: normal;
+                            font-size: 12px;
+                        }
+                        button{
+                            cursor: pointer;
+                            border: 5px solid white;
+                            background-color: white;
+                            padding: 0px;
+                            border-radius: 5px;
+                            font-size: 5px;
+                            font-weight: bold;
+                            color: #002f34;
+                            &:hover{
+                                background-color: #002f34;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

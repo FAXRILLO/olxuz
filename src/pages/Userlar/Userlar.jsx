@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useInfoContext } from "../../context/Context";
 import { getUser } from "../../api/deleteRequests";
+import "./Userlar.scss"
 
 const Userlar = ({chat}) => {
     const { currentUser, exit, onlineUsers, serverUrl } = useInfoContext();
@@ -15,37 +16,40 @@ const Userlar = ({chat}) => {
         return onlineUser ? true : false;
     };
 
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const { data } = await getUser(userId);
-        setUserData(data.user);
-      } catch (error) {
-        if (error.response.data.message === "jwt expired") {
-          exit();
+    useEffect(() => {
+      const getUserData = async () => {
+        try {
+          const { data } = await getUser(userId);
+          setUserData(data.user);
+        } catch (error) {
+          if (error.response.data.message === "jwt expired") {
+            exit();
+          }
         }
-      }
-    };
-    getUserData();
-  }, [userId]);
+      };
+      getUserData();
+    }, [userId]);
+    console.log(userData);
     return (
-    <div>
+    <div className='user'>
         <img className='img1' src={
           userData?.profilePicture
-            ? `${serverUrl}/${userData?.profilePicture}`
+            ? `${userData?.profilePicture.url}`
             : "yoq"
         } alt="img" />
-        <div className="box">
-        <span className='name'>{userData?.name}</span>
-        <br />
-        <span className='text'>fmfkrfrkfr</span>
-        <br />
-        <span className='message'>eded</span>
-        </div>
-        <div className="box2">
-            <span className='data'>24.01</span>
-            <br />
-            <i class="fa-regular fa-bookmark"></i>
+        <div className="row">
+          <div className="col-xl-10 col-lg-10 col-md-6 col-sm-10 col-12">
+            <div className="box">
+              <span className='name'>{userData?.firstname ? userData.firstname : 'Yengi foydalanuvchi'}{userData?.authName}</span>
+            </div>
+          </div>
+          <div className="col-xl-2 col-lg-2 col-md-6 col-sm-2 col-12">
+            <div className="box2">
+              <span className='data'>{new Date(userData?.createdAt).toLocaleDateString()}</span>
+              <br />
+              <i class="fa-regular fa-bookmark"></i>
+            </div>
+          </div>
         </div>
     </div>
   )

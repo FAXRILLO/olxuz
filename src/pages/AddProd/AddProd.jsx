@@ -110,9 +110,9 @@ const AddProd = () => {
   const [getId, setGetId] = useState(null);
   const [subId, setSubId] = useState(null);
   const [typeId, setTypeId] = useState(null);
-  const findCategory = category.filter((set) => set._id === getId)[0];
+  const findCategory = category?.filter((set) => set._id === getId)[0];
 
-  const filterCat = category.filter((set) => set._id === getId)[0];
+  const filterCat = category?.filter((set) => set._id === getId)[0];
   console.log(filterCat);
   const findType = type.filter((set) => set._id === typeId)[0];
   const findSub = sub.filter((set) => set._id === subId)[0];
@@ -232,7 +232,7 @@ const AddProd = () => {
                             data-bs-target="#staticBackdrops"
                           >
                             <div className="modal-categorys">
-                              {category.length > 0 &&
+                              {category?.length > 0 &&
                                 category.map((cat) => {
                                   return (
                                     <div className="modal_texts">
@@ -282,7 +282,7 @@ const AddProd = () => {
                         <div className="ctg_first_sct">
                           <ul className="modal_list">
                             <div className="modal-categorys">
-                              {category.length > 0 &&
+                              {category?.length > 0 &&
                                 category.map((cat) => {
                                   return (
                                     <li
@@ -302,7 +302,7 @@ const AddProd = () => {
                         </div>
                         <div className="ctg_second_sct">
                           <ul className="modal_list">
-                            {sub.map((item) => {
+                            {sub?.map((item) => {
                               if (item.categoryId === getId) {
                                 return (
                                   <li
@@ -319,7 +319,7 @@ const AddProd = () => {
                         </div>
                         <div className="ctg_second_sct">
                           <ul className="modal_list">
-                            {type.map((item) => {
+                            {type?.map((item) => {
                               if (item.subId === subId) {
                                 return (
                                   <li
@@ -355,7 +355,7 @@ const AddProd = () => {
                   </div>
 
                   <div className="img-boxes">
-                    {images.map((image, index) => (
+                    {images?.map((image, index) => (
                       
                       <div key={index} className="row">
                         <label htmlFor={`inp-${index + 1}`}>
