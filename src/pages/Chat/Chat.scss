@@ -164,16 +164,10 @@
                 }
             }
             .section6{
-                border-bottom: 1px solid #000;
-                background-color: aqua;
                 display: flex;
+                flex-direction: column;
+                gap: 10px;
                 padding: 10px;
-                
-                .not-acc{
-                    .bbb{
-                        font-size: 20px;
-                    }
-                }
             }
         }
         .page2{
@@ -374,7 +368,6 @@
                     }
                 }
                 .section6{
-                    background-color: aqua;
                     display: flex;
                     padding: 10px;
                     .img1{
@@ -488,7 +481,6 @@
                     }
                 }
                 .section6{
-                    background-color: aqua;
                     display: flex;
                     padding: 10px;
                     .img1{

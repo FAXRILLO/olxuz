@@ -21,14 +21,14 @@ const Signup = () => {
       const res = isAccount ? await login(formData) : await register(formData);
       console.log(res);
       toast.dismiss();
-      toast.success(res?.data?.message);
+      toast.success(res?.data?.massage);
       setCurrentUser(res?.data?.user);
       localStorage.setItem("profile", JSON.stringify(res?.data?.user));
       localStorage.setItem("token", JSON.stringify(res?.data?.token));
-    } catch (error) {
+    } catch (err) {
+      console.log(err);
       toast.dismiss();
-      console.log(error);
-      toast.error(error?.response?.data?.message);
+      toast.error(err.response.data.massage);
     }
   };
 

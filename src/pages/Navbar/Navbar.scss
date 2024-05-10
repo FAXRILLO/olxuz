@@ -1,4 +1,5 @@
 .navbare{
+
     background-color: #002f34;
     header{
         font-family: sans-serif;
@@ -67,6 +68,9 @@
             }
         }
     }
+    .media-navbar{
+        display: none;
+    }
 }
 @media (max-width: 992px){
     .navbare{
@@ -132,216 +136,64 @@
 }
 @media (max-width: 767px){
     .navbare{
+        a{
+            color: white;
+        }
+        position: fixed;
+        z-index: 9999;
+        bottom: 0;
+        left: 0;
+        width: 100%;
         background-color: #002f34;
         header{
-            font-family: sans-serif;
-            font-weight: bold;
-            font-size: 17px;
-            width: 100%;
-            max-width: 1440px;
-            .navbar{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 5px 0;
-                .logo{
-                  height: 30px;
-                  width: 30px;
-                  img{
-                    display: none;
-                  }  
-                  
-                }
-                .nav-list{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    list-style-type: none;
-                    gap: 40px;
-                    .icon{
-                        color: white;
-                        display: block;
-                        font-size: 12px;
-                      }
-                    .nav-link{
-                        .h6{
-                            display: none;
-                            
-                        }
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-                        text-decoration: none;
-                        color: white;
-                        &:hover{
-                            color: #7f9799;
-                        }   
-                        font-size: 12px;
-                        span{
-                            color: #7f9799;
-                            font-weight: normal;
-                            font-size: 12px;
-                        }
-                        button{
-                            cursor: pointer;
-                            border: 5px solid white;
-                            background-color: white;
-                            padding: 2px;
-                            border-radius: 5px;
-                            font-size: 10px;
-                            font-weight: bold;
-                            color: #002f34;
-                            &:hover{
-                                background-color: #002f34;
-                                color: white;
-                            }
-                        }
-                    }
-                }
+            display: none;
+        }
+        .media-navbar{
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            i{
+                font-size: 20px;
+                letter-spacing: 40px;
             }
         }
     }
 }
-@media (max-width: 492px){
+@media (max-width: 403px){
     .navbare{
+        width: 100%;
         background-color: #002f34;
         header{
-            font-family: sans-serif;
-            font-weight: bold;
-            font-size: 10px;
-            width: 100%;
-            max-width: 1440px;
-            .navbar{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0px 0;
-                .logo{
-                  height: 30px;
-                  width: 30px;
-                  img{
-                    display: none;
-                  }  
-                  display: none;
-                }
-                .nav-list{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    list-style-type: none;
-                    gap: 20px;
-                    .icon{
-                        color: white;
-                        display: block;
-                        font-size: 12px;
-                      }
-                    .nav-link{
-                        .h6{
-                            display: none;
-                            
-                        }
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        text-decoration: none;
-                        color: white;
-                        &:hover{
-                            color: #7f9799;
-                        }   
-                        font-size: 12px;
-                        span{
-                            color: #7f9799;
-                            font-weight: normal;
-                            font-size: 12px;
-                        }
-                        button{
-                            cursor: pointer;
-                            border: 5px solid white;
-                            background-color: white;
-                            padding: 2px;
-                            border-radius: 5px;
-                            font-size: 10px;
-                            font-weight: bold;
-                            color: #002f34;
-                            &:hover{
-                                background-color: #002f34;
-                                color: white;
-                            }
-                        }
-                    }
-                }
+            display: none;
+        }
+        .media-navbar{
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            i{
+                font-size: 17px;
+                letter-spacing: 20px;
             }
         }
     }
 }
-@media (max-width: 381px){
+@media (max-width: 265px){
     .navbare{
+        width: 100%;
         background-color: #002f34;
         header{
-            font-family: sans-serif;
-            font-weight: bold;
-            font-size: 10px;
-            width: 100%;
-            max-width: 1440px;
-            .navbar{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 0;
-                .logo{
-                  height: 30px;
-                  width: 30px;
-                  img{
-                    display: none;
-                  }  
-                  display: none;
-                }
-                .nav-list{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    list-style-type: none;
-                    gap: 15px;
-                    .icon{
-                        color: white;
-                        display: block;
-                        font-size: 12px;
-                      }
-                    .nav-link{
-                        .h6{
-                            display: none;
-                            
-                        }
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        text-decoration: none;
-                        color: white;
-                        &:hover{
-                            color: #7f9799;
-                        }   
-                        font-size: 12px;
-                        span{
-                            color: #7f9799;
-                            font-weight: normal;
-                            font-size: 12px;
-                        }
-                        button{
-                            cursor: pointer;
-                            border: 5px solid white;
-                            background-color: white;
-                            padding: 0px;
-                            border-radius: 5px;
-                            font-size: 5px;
-                            font-weight: bold;
-                            color: #002f34;
-                            &:hover{
-                                background-color: #002f34;
-                                color: white;
-                            }
-                        }
-                    }
-                }
+            display: none;
+        }
+        .media-navbar{
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            i{
+                font-size: 15px;
+                letter-spacing: 15px;
             }
         }
     }

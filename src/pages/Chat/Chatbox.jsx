@@ -24,6 +24,7 @@ const Chatbox = () => {
       const getchats = async () => {
         try {
           const res = await userChats()
+          console.log(res);
           setChats(res?.data.chats);
         } catch (error) {
           console.log(error);

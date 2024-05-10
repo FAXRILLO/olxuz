@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useInfoContext } from '../../context/Context'
 import "./Navbar.scss"
 
 const Navbar = () => {
+  const {exit} = useInfoContext()
   return (
     <div className="navbare">
       <div className="container">
@@ -26,7 +28,7 @@ const Navbar = () => {
                             <Link to={"/chat"} class="nav-link">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" class="css-1658auh"><path fill="currentColor" fill-rule="evenodd" d="M11 4.01c-3.86 0-7 3.157-7 7.038v8.426l2.553-1.283.447-.106h6c3.86 0 7-3.157 7-7.037S16.86 4.01 13 4.01h-2zM3.447 22 2 21.1V11.049C2 6.058 6.037 2 11 2h2c4.962 0 9 4.059 9 9.048s-4.038 9.047-9 9.047H7.236L3.448 22z"></path></svg><span className='h6'>Xabarlar</span> </Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" onClick={exit}>
                             <a  class="nav-link" href="#">O'Z |<span>Рус</span></a>
                         </li>
                         <li className="nav-item">
@@ -51,7 +53,16 @@ const Navbar = () => {
                 </nav>
             </div>
         </div>
-      </header>
+        </header>
+
+        <div className="media-navbar">
+          <Link to={"/"}><i class="fa-sharp fa-solid fa-house"></i></Link>
+          <Link to={"/chat"}><i class="fa-solid fa-comment"></i></Link>
+          <Link onClick={exit}><i class="fa-solid fa-door-closed"></i></Link>
+          <Link to={"/like"}><i class="fa-solid fa-heart"></i></Link>
+          <Link to={"/profile"}><i class="fa-solid fa-user"></i></Link>
+          <Link to={"/addProd"}><i class="fa-solid fa-address-book"></i></Link>
+        </div>
       </div>
     </div>
 

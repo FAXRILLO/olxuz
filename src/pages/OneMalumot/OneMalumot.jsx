@@ -956,6 +956,7 @@ const OneMalumot = () => {
                                             <button className='malumotbtn'>Mashina holati:{prod?.capacity}</button>
                                             <button className='malumotbtn'>Mulkdorlar soni: {prod?.number_of_hosts}</button>
                                             <button className='malumotbtn'>{prod?.options}</button>
+                                            <button className='malumotbtn'>{prod?.email}</button>
                                         </div>
                                         <h1 className='h1_1'>TAVSIF</h1>
                                         <p className='pmalumot'>{prod?.content}</p>

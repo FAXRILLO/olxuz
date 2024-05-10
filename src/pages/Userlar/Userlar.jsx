@@ -29,7 +29,6 @@ const Userlar = ({chat}) => {
       };
       getUserData();
     }, [userId]);
-    console.log(userData);
     return (
     <div className='user'>
         <img className='img1' src={
