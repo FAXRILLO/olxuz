@@ -1,4 +1,5 @@
 .chat{
+    overflow: hidden;
     a{
         text-decoration: none;
         color: black;
@@ -97,6 +98,7 @@
                 padding: 10px;
                 text-align: right;
                 .save{
+                    background-color: aqua;
                     font-size: 15px;
                     border: none;
                     background: none;
@@ -115,19 +117,12 @@
                     border: none;
                     background: white;
                     background: none;
-                }
-                .olmoq:focus{
                     background-color: aquamarine;
-                    border-radius: 5px;
                 }
                 .sotaman{
                     background: none;
                     margin-left: 10px;
                     border: none;
-                }
-                .sotaman:focus{
-                    border-radius: 5px;
-                    background-color: aquamarine;
                 }
             }
             .section3{
@@ -282,6 +277,7 @@
         }
     }
 }
+
 @media only screen and (max-width: 570px) {
     .chat{
         .box1{

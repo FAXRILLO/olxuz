@@ -96,27 +96,28 @@ const Message = ({asnwerMessage, setSendMessage, setPage, setSocketDel, deleted,
 
       const handleSend = async (e) => {
         e.preventDefault()
-          const formData = new FormData(e.target)
-
-        formData.append('senderId', currentUser._id); 
-        formData.append('chatId', currentChat._id); 
-        formData.append('createdAt', new Date().getTime());
-
-        const newMessage = {
-            senderId: currentUser._id,
-            chatId: currentChat._id,
-            text: textMessage,
-            createdAt: new Date().getTime(),
-        }
-
-        setSend(true)
-        setSendMessage({...newMessage, receivedId: userId})
-        
         try {
+            const formData = new FormData(e.target)
+            if(formData.get('text') === ""){
+                return
+            }
+            formData.append('senderId', currentUser._id); 
+            formData.append('chatId', currentChat._id); 
+
+            const newMessage = {
+                senderId: currentUser._id,
+                chatId: currentChat._id,
+                text: textMessage,
+                createdAt: new Date().getTime(),
+            }
+
+            setSend(true)
+            setSendMessage({...newMessage, receivedId: userId})
             const {data} = await addMessage(formData);
             setMessages([...messages, data.messages])
             setSend(false)
             e.target.reset()
+
         } catch (error) {
             toast.dismiss()
             toast.error(error?.response?.data.message)
@@ -124,6 +125,9 @@ const Message = ({asnwerMessage, setSendMessage, setPage, setSocketDel, deleted,
                 exit()
             }
         }
+
+       
+    
       }
 
       const [previewImage, setPreviewImage] = useState('');
@@ -139,21 +143,19 @@ const Message = ({asnwerMessage, setSendMessage, setPage, setSocketDel, deleted,
             <div className="profile-box">
                 <div className='profile-content'>
                 <i className='fa-solid fa-chevron-left exit' onClick={() => setPage(0)}></i>
-                <img src={userData?.profilePicture?.url ? `${userData?.profilePicture?.url}` : '/images/default_.jpg'} alt="profile_img" className="message-img" />
+                <img src={userData?.profilePicture?.url ? `${userData?.profilePicture?.url}` : 'https://cdn-icons-png.flaticon.com/512/21/21104.png'} alt="profile_img" className="message-img" />
                 <div className="user-name">
-                    <h3>{userData?.firstname ? userData.firstname : 'Новый пользователь'}</h3>
-                    <div style={online() ? {color: 'greenyellow'} : {color: 'gray'}}>{online() ? 'в сети' : 'был(а) недавно'}</div>
+                    <h3>{userData?.firstname ? userData.firstname : 'yengi yuser'}</h3>
+                    {/* <div style={online() ? {color: 'greenyellow'} : {color: 'gray'}}>{online() ? 'online' : 'now online'}</div> */}
                 </div>
                 </div>
                 <div className="profile-set">
                     <i className='fa-regular fa-bookmark'></i>
-                    <i className="fa-solid fa-circle-minus"></i>
-                    <i className='fa-regular fa-font-awesome'></i>
                     <i onClick={() => {setDelChat(true); deleteUserChat()}} className="fa-solid fa-trash-can"></i>
                 </div>
             </div>
             <div className="send-message">
-            <b style={{textAlign: 'center', fontSize: '12px'}}>начилос в {new Date(currentChat.createdAt).toLocaleDateString()}</b>
+            <b style={{textAlign: 'center', fontSize: '12px'}}>yozishishgan sana {new Date(currentChat.createdAt).toLocaleDateString()}</b>
             {messages?.length > 0 ? messages.map(chat => {
                 return(<div key={chat._id} className={chat.senderId === currentUser._id ? "messages own" : "messages"}>
                     <div className='span-box'>
@@ -162,7 +164,7 @@ const Message = ({asnwerMessage, setSendMessage, setPage, setSocketDel, deleted,
                         {chat.text} </span>
                         <strong className='message-time'>{new Date(chat.createdAt).toLocaleTimeString().slice(0, 5)}</strong>
                     </div>
-                </div>)}) : <h3>No correspondence yet !</h3>}
+                </div>)}) : <h3>...</h3>}
                 <div ref={scroll} />
             </div>
             <div className="send-input-box">
@@ -171,8 +173,8 @@ const Message = ({asnwerMessage, setSendMessage, setPage, setSocketDel, deleted,
                         <i className="fa-solid fa-paperclip"></i>
                         <input hidden id='send-file' type="file" name="image"/>
                     </label>
-                    <input type="text" name='text' placeholder='Напишите сообщение...'/>
-                    <button disabled={send} className='message-btn'><i className="fa-solid fa-square-caret-right"></i></button>
+                    <input type="text" name='text' placeholder='habar yozing'/>
+                    <button disabled={send} className='message-btn'><i class="fa-sharp fa-regular fa-paper-plane"></i></button>
                 </form>
             </div>
             </div> : <div className='not-acc'>

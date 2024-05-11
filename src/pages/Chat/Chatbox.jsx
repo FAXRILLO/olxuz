@@ -11,8 +11,8 @@ const serverUrl = process.env.REACT_APP_SERVER_URL;
 const socket = io(serverUrl);
 
 const Chatbox = () => {
-    const {chats, exit, setChats, currentUser,  currentChat, setCurrentChat, setOnlineUsers} = useInfoContext()
-    const [sendMessage, setSendMessage] = useState(null)
+    const {chats, exit, setChats, currentUser,  currentChat, answerMessage, setCurrentChat, setOnlineUsers, sendMessage, setSendMessage} = useInfoContext()
+
     const [asnwerMessage, setAnswerMessage] = useState(null)
     const [deleted, setDeleted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,10 +24,8 @@ const Chatbox = () => {
       const getchats = async () => {
         try {
           const res = await userChats()
-          console.log(res);
           setChats(res?.data.chats);
         } catch (error) {
-          console.log(error);
           if(error?.response?.data.message === 'jwt expired'){
             exit()
           }
@@ -48,10 +46,13 @@ const Chatbox = () => {
       if (sendMessage !== null) { 
         socket.emit("send-message", sendMessage); 
       } 
+    }, [sendMessage]); 
+
+    useEffect(() => { 
       socket.on("answer-message", (data) => { 
         setAnswerMessage(data); 
       }); 
-    }, []); 
+    }, [answerMessage]); 
    
     useEffect(() => {
       if(deleted && socketDel){
@@ -65,7 +66,7 @@ const Chatbox = () => {
   return (
     <div className="box2">
                     <div className="row">
-                        <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+                        <div className="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
                             <div className="page1">
                                 <div className="section1">
                                     <button className='save'><i class="fa-sharp fa-regular fa-bookmark"></i> Saqlanganlar</button>
@@ -98,7 +99,7 @@ const Chatbox = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
+                        <div className="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
                         <div className={chat === 1 ? 'message-box' : 'message-box message-none'}>
                         <Message asnwerMessage={asnwerMessage} setSendMessage={setSendMessage} sendMessage={sendMessage}  setPage={setChat} setSocketDel={setSocketDel} deleted={deleted} setDeleted={setDeleted} loading={loading} setLoading={setLoading}/>
                       </div>

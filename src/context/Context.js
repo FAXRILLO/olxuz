@@ -105,6 +105,8 @@ export const InfoProvider = ({children}) => {
     const [currentChat, setCurrentChat] = useState(null)
     const [chats, setChats] = useState([])
     const [loadingRes, setLoadingRes] = useState(false)
+    const [answerMessage, setAnswerMessage,] = useState(null)
+    const [sendMessage, setSendMessage] = useState(null)
 
     const toggleReset = () => setLoadingRes(!loadingRes)
     
@@ -145,7 +147,7 @@ export const InfoProvider = ({children}) => {
         currentChat, setCurrentChat,
         chats, setChats, sub, setSub,
         type, setType, works, setWorks,
-        toggleReset
+        toggleReset, answerMessage, setAnswerMessage, sendMessage, setSendMessage
     }
 
  

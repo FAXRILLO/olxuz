@@ -766,19 +766,23 @@
 
 
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import "./OneMalumot.scss"
 import { Link, useParams } from 'react-router-dom'
 import {useInfoContext} from "../../context/Context"
 import {getOneProd, getSimilar} from "../../api/getRequests"
 import { toast } from 'react-toastify'
+import { io } from "socket.io-client";
 import { data } from "../../data"
 import {addMessage, getMessage} from "../../api/messageRequests"
 import {findChat, userChats} from "../../api/chatRequest"
-import { StyleProvider } from '@ant-design/cssinjs'
+import Slider from 'react-slick'
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
+const socket = io(serverUrl);
 
 const OneMalumot = () => {
-    const { cards, chats, exit, setChats, currentUser,  currentChat, setCurrentChat, onlineUsers} = useInfoContext()
+    const { cards, chats, exit, answerMessage, setAnswerMessage,  setChats, currentUser,  currentChat, setCurrentChat, onlineUsers, sendMessage, setSendMessage} = useInfoContext()
   const [prod, setProd] = useState(null)
   const [tel, setTel] = useState(false)
   const [similar, setSimilar] = useState([])
@@ -790,6 +794,12 @@ const OneMalumot = () => {
 
   const userId = currentChat?.members?.find(id => id !== currentUser._id)
 
+  const scroll = useRef()
+
+
+  useEffect(() => {
+    scroll.current?.scrollIntoView({behavior: "smooth"})
+}, [messages])
 
 
     useEffect(() => {
@@ -816,6 +826,17 @@ const OneMalumot = () => {
 
     const toggleChat = () => setOpenChat(!openChat)
 
+    useEffect(() => { 
+        if (sendMessage !== null) { 
+          socket.emit("send-message", sendMessage); 
+        } 
+      }, [sendMessage]); 
+  
+      useEffect(() => { 
+        socket.on("answer-message", (data) => { 
+          setAnswerMessage(data); 
+        }); 
+      }, [answerMessage]); 
 
     useEffect(()=>{
         const userChat = async () =>{
@@ -835,30 +856,52 @@ const OneMalumot = () => {
         }
       },[currentUser, openChat])
 
-    const handleSend = async (e) => {
+      const handleSend = async (e) => {
         e.preventDefault()
-        const formData = new FormData(e.target)
-        const {data} = await findChat(prod?.user?._id, currentUser._id);
-        console.log(data.message);
-        setCurrentChat(data?.chat)
-
-        formData.append('senderId', currentUser._id); 
-        formData.append('chatId', data.chat._id); 
-
-        setSend(true)
-        
         try {
-            console.log('jo\'natim');
+            const formData = new FormData(e.target)
+            if(formData.get('text') === ""){
+                return
+            }
+            const res = await findChat(prod?.user?._id, currentUser._id)
+            const id = res?.data?.chat?.members?.find(id => id !== currentUser._id)
+
+            formData.append('senderId', currentUser._id); 
+            formData.append('chatId', res?.data?.chat._id); 
+
+            const newMessage = {
+                senderId: currentUser._id,
+                chatId: res?.data?.chat._id,
+                text: formData.get('text'),
+                createdAt: new Date().getTime(),
+            }
+
+
+            setSend(true)
+            await setSendMessage({...newMessage, receivedId: id})
+            
             const {data} = await addMessage(formData);
-            console.log('keldi');
             setMessages([...messages, data.messages])
             setSend(false)
             e.target.reset()
+
         } catch (error) {
+            toast.dismiss()
+            toast.error(error?.response?.data.message)
             if(error?.response?.data.message === 'jwt exprired'){
                 exit()
             }
         }
+
+       
+    
+      }
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        alidesToScroll: 1
     }
 
     return (
@@ -873,32 +916,19 @@ const OneMalumot = () => {
                         <div className="page1">
                             <div className="row">
                                 <div style={{ backgroundColor: "white", }} className="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                                    <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
-                                        <div className="carousel-indicators">
-                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                        </div>
-                                        <div className="carousel-inner">
-                                            {prod?.photos?.map((res) => {
-                                                console.log(res.url);
-                                                return (
-                                                    <Link className="carousel-item active">
-                                                        <img src={res.url} className="d-block w-100" alt="img yo'q" />
-                                                    </Link>
-                                                )
-                                            })}
+                                <div className="carouselsx">
+                                            <Slider {...settings}>
+                                                {prod?.photos?.map((res) => {
+                                                    return (
+                                                        <Link className="carousel-item active">
+                                                            <img src={res.url} className="d-block w-100" alt="img yo'q" />
+                                                        </Link>
+                                                    )
+                                                })}
+                                            </Slider>
+                                            
 
                                         </div>
-                                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span className="visually-hidden">Previous</span>
-                                        </button>
-                                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span className="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
                                 </div>
                                 
                                 <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
@@ -1012,7 +1042,7 @@ const OneMalumot = () => {
 
                             </div>
                         </div>
-                        <div className="page4">
+                        {/* <div className="page4">
                             <h3 className='kim'>Mualifning boshqa elonlari  <small className='smal'>Hammasi</small></h3>
                             <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
                                 <div className="carousel-inner">
@@ -1230,7 +1260,7 @@ const OneMalumot = () => {
                                     <span className="visually-hidden">Next</span>
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="page5">
                             <h3 className='elon'>O'xshash e'lonlar</h3>
                             <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false" data-bs-interval="false">
@@ -1474,7 +1504,7 @@ const OneMalumot = () => {
                                 {currentChat?.createdAt && <b style={{textAlign: 'center', fontSize: '12px'}}>начилос в {new Date(currentChat?.createdAt).toLocaleDateString()}</b>}
                                 {messages?.length > 0 ? messages.map(chat => {
                                 return(<div key={chat?._id} className={chat?.senderId === currentUser?._id ? "messages own" : "messages"}>
-                                    <div className='span-box'>
+                                    <div className='span-box' ref={scroll}>
                                         <span>
                                         {chat?.file && <img style={{width: '100%'}} src={`${chat?.file?.url}`} alt='chat_img'/>}    
                                         {chat?.text} </span>

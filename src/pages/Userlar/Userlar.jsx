@@ -31,24 +31,18 @@ const Userlar = ({chat}) => {
     }, [userId]);
     return (
     <div className='user'>
-        <img className='img1' src={
-          userData?.profilePicture
-            ? `${userData?.profilePicture.url}`
-            : "yoq"
-        } alt="img" />
-        <div className="row">
-          <div className="col-xl-10 col-lg-10 col-md-6 col-sm-10 col-12">
+        {userData?.profilePicture?.url ? <img style={{width: "50px", height: "50px", borderRadius: "50%"}} src={userData.profilePicture.url} alt="" className='profile-img'/>
+                : <img style={{width: "50px", height: "50px", borderRadius: "50%"}} src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png" alt="" className='profile-img'/>}
+          <div className="mmb">
+
             <div className="box">
               <span className='name'>{userData?.firstname ? userData.firstname : 'Yengi foydalanuvchi'}{userData?.authName}</span>
             </div>
-          </div>
-          <div className="col-xl-2 col-lg-2 col-md-6 col-sm-2 col-12">
             <div className="box2">
               <span className='data'>{new Date(userData?.createdAt).toLocaleDateString()}</span>
               <br />
               <i class="fa-regular fa-bookmark"></i>
             </div>
-          </div>
         </div>
     </div>
   )

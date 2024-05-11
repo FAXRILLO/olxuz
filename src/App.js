@@ -18,6 +18,8 @@ import Cars from "./pages/Cars/Cars";
 import Chat from "./pages/Chat/Chat";
 import AddProd from "./pages/AddProd/AddProd";
 import Elon from "./pages/Elon/Elon";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Chatbox from "./pages/Chat/Chatbox";
 
 
