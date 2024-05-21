@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Chat.scss'
 import Contact from '../../components/Contact/Contact'
 import Message from '../../components/Message/Message'
@@ -10,13 +10,17 @@ const serverURL = process.env.REACT_APP_SERVER_URL
 const socket = io(serverURL)
 
 const Chat = () => {
-  const {chats, exit, setChats, currentUser,  currentChat, setCurrentChat, setOnlineUsers} = useInfoContext()
-  const [sendMessage, setSendMessage] = useState(null)
-  const [asnwerMessage, setAnswerMessage] = useState(null)
+  const {chats, exit, setChats, currentUser,  asnwerMessage, setAnswerMessage, setSendMessage, sendMessage, setCurrentChat, setOnlineUsers} = useInfoContext()
   const [deleted, setDeleted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [socketDel, setSocketDel] = useState(false);
   const [chat, setChat] = useState(0);
+
+  const scroll = useRef(null)
+
+  useEffect(() => {
+    scroll.current?.scrollIntoView({behavior: "smooth"})
+}, [chat])
   
   useEffect(()=>{
     const getchats = async () => {
@@ -31,7 +35,7 @@ const Chat = () => {
       }
     }
     getchats()
-  },[currentUser._id, loading])
+  },[currentUser._id, loading, deleted])
 
  useEffect(() => { 
     socket.emit("new-user-added", currentUser._id); 
@@ -42,23 +46,26 @@ const Chat = () => {
   }, [currentUser._id,]); 
  
   useEffect(() => { 
-    if (sendMessage !== null) { 
-      socket.emit("send-message", sendMessage); 
+    if (sendMessage !== null) {
+      socket.emit("send-message", sendMessage);   
     } 
+  }, [sendMessage]); 
+
+  useEffect(() => { 
     socket.on("answer-message", (data) => { 
       setAnswerMessage(data); 
     }); 
-  }, [sendMessage]); 
+  }, [asnwerMessage]); 
  
   useEffect(() => {
-    if(deleted && socketDel){
+    if(socketDel){
       setSocketDel(false)
       socket.emit('delete-message')
     }
     socket.on('deleted', () => {
       setDeleted(!deleted)
     })
-  }, [deleted]);
+  }, [socketDel]);
   
   
   return (
@@ -73,7 +80,7 @@ const Chat = () => {
                 <button>Пополнить счет</button>
             </div>
             </div>
-            <nav>
+            <nav ref={scroll}>
                 <ul>
                     <li><NavLink to='/my'>Объявления</NavLink></li>
                     <li><NavLink to='/chat'>Сообщения</NavLink></li>
@@ -109,7 +116,7 @@ const Chat = () => {
               <div className="profiles">
                 {chats?.length > 0 ? chats.map(chat => {
                       return (<div  className="chats" onClick={() => {setCurrentChat(chat); setChat(1)}} key={chat._id}>
-                        <Contact chat={chat} loading={loading}/>
+                        <Contact chat={chat} loading={loading} setLoading={setLoading}/>
                       </div>
                         )
                       }) : <div className='not-acc'>
@@ -124,7 +131,7 @@ const Chat = () => {
               </div>
             </div>
             <div className={chat === 1 ? 'message-box' : 'message-box message-none'}>
-              <Message asnwerMessage={asnwerMessage} setSendMessage={setSendMessage} sendMessage={sendMessage}  setPage={setChat} setSocketDel={setSocketDel} deleted={deleted} setDeleted={setDeleted} loading={loading} setLoading={setLoading}/>
+              <Message asnwerMessage={asnwerMessage} setSendMessage={setSendMessage} sendMessage={sendMessage} socketDel={socketDel} setPage={setChat} setSocketDel={setSocketDel} deleted={deleted} setDeleted={setDeleted} loading={loading} setLoading={setLoading}/>
             </div>
         </div>
       </div>

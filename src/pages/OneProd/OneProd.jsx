@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './OneProd.scss'
 import { Link, useParams } from 'react-router-dom'
 import { useInfoContext } from '../../context/infoContext'
@@ -8,9 +8,12 @@ import Card from '../../components/Card/Card'
 import LikeBtn from '../../components/LikeBtn/LikeBtn'
 import { addMessage, getMessage } from '../../api/messageRequests'
 import { findChat, userChats } from '../../api/chatRequests'
+import { io } from 'socket.io-client'
+const serverURL = process.env.REACT_APP_SERVER_URL
+const socket = io(serverURL)
 
 const OneProd = () => {
-  const { cards, chats, exit, setChats, currentUser,  currentChat, setCurrentChat, onlineUsers} = useInfoContext()
+  const { setOnlineUsers, chats, exit, currentUser,  currentChat, setCurrentChat, onlineUsers, setSendMessage, sendMessage, asnwerMessage, setAnswerMessage} = useInfoContext()
   const [prod, setProd] = useState(null)
   const [tel, setTel] = useState(false)
   const [similar, setSimilar] = useState([])
@@ -18,6 +21,12 @@ const OneProd = () => {
   const [openChat, setOpenChat] = useState(false)
   const [send, setSend] = useState(false)
   const id = useParams().id
+  const scroll = useRef()
+
+
+  useEffect(() => {
+      scroll.current?.scrollIntoView({behavior: "smooth"})
+  }, [messages])
 
   const userId = currentChat?.members?.find(id => id !== currentUser._id)
 
@@ -33,15 +42,37 @@ const OneProd = () => {
             }
             if(result){
             const resSim = await getSimilar('car', result.name)
-            setSimilar(resSim)
+            setSimilar(resSim.data.similar)
             setProd(result)
           }
         } catch (error) {
-          console.log(error);
         }
       }
       getOne()
     }, [id])
+
+
+    useEffect(() => { 
+      socket.emit("new-user-added", currentUser._id); 
+   
+      socket.on("get-users", (users) => { 
+        setOnlineUsers(users); 
+      }); 
+    }, [currentUser._id,]); 
+   
+    useEffect(() => { 
+      if (sendMessage !== null) { 
+        console.log(sendMessage);
+        socket.emit("send-message", sendMessage);   
+      } 
+    }, [sendMessage]); 
+  
+    useEffect(() => { 
+      socket.on("answer-message", (data) => { 
+        setAnswerMessage(data); 
+      }); 
+    }, [asnwerMessage]); 
+   
 
   const toggleChat = () => setOpenChat(!openChat)
 
@@ -56,7 +87,6 @@ const OneProd = () => {
           setMessages(data.messages)
         }
       } catch (error) {
-        console.log(error);
       }
     }
     if(openChat){
@@ -67,22 +97,25 @@ const OneProd = () => {
   const handleSend = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
+    if(formData.get('text') === ""){
+      return
+    }
     const {data} = await findChat(prod?.user?._id, currentUser._id);
     setCurrentChat(data?.chat)
+    let id = data?.chat?.members?.find(id => id !== currentUser._id)
+
+    const newMessage = {
+      senderId: currentUser._id,
+      chatId: data?.chat._id,
+      text: formData.get('text'),
+      createdAt: new Date().getTime()
+  }
 
     formData.append('senderId', currentUser._id); 
     formData.append('chatId', data.chat._id); 
-    formData.append('createdAt', new Date().getTime());
-
-    const newMessage = {
-        senderId: currentUser._id,
-        chatId: currentChat._id,
-        text: formData.get('text'),
-        createdAt: new Date().getTime(),
-    }
 
     setSend(true)
-    // setSendMessage({...newMessage, receivedId: userId})
+    setSendMessage({...newMessage, receivedId: id})
     
     try {
         const {data} = await addMessage(formData);
@@ -95,6 +128,18 @@ const OneProd = () => {
         }
     }
   }
+
+useEffect(() => {
+    if(currentChat && asnwerMessage !== null && asnwerMessage?.chatId === currentChat?._id){
+        setMessages([...messages, asnwerMessage])
+    }
+}, [asnwerMessage])
+
+
+const online = () => {
+    const onlineUser = onlineUsers.find(user => user.userId === userId)
+    return onlineUser ? true : false
+}
 
   const settings = {
     dots: true,
@@ -200,10 +245,10 @@ const OneProd = () => {
                       <p>xxx xxx xxx</p>
                       <button onClick={() => setTel(true)}>Показать</button>
                     </div> :
-                      <div className='tel-btn'>
+                      <Link to={`tel:${prod?.phone}`} style={{textDecoration: 'none'}} className='tel-btn'>
                         <i className="fa-solid fa-phone"></i>
                         {prod?.phone}
-                      </div>
+                      </Link>
                     }
                   </div>
                 </div>
@@ -324,7 +369,7 @@ const OneProd = () => {
               </div>
               <div className="price-bottom">
                 <button onClick={toggleChat}>Сообщения</button>
-                <button>Позвонить / SMS</button>
+                <button><Link style={{textDecoration: 'none', color: '#002f34'}} to={`tel:${prod?.phone}`}>Позвонить / SMS</Link></button>
               </div>
             </div>
             <div className="content-prod">
@@ -376,9 +421,8 @@ const OneProd = () => {
                 <h2>Похожие объявления</h2>
               </div>
                 <div className="carousel-item">
-                  {similar.map(prod => {
-                    console.log(similar);
-                    return <Card key={prod?._id} prod={prod} />
+                  {similar.map(res => {
+                    return <Card key={res?._id} prod={res} />
                   })}
                 </div>
             </div>}
@@ -412,6 +456,7 @@ const OneProd = () => {
                           {chat?.text} </span>
                           <strong className='message-time'>{new Date(chat.createdAt).toLocaleTimeString().slice(0, 5)}</strong>
                       </div>
+                      <div ref={scroll}/>
                   </div>)}) : <h3>No correspondence yet !</h3>}
               </div>
               <div className="send-input-box">

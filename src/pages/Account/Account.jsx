@@ -130,7 +130,7 @@ const Account = () => {
                         <button>Сохранить</button>
                     </form>
                     </div>
-                    <div className={page === 2 ? 'drop-container active' : 'drop-container'}>
+                    {!currentUser.lastname && <div className={page === 2 ? 'drop-container active' : 'drop-container'}>
                     <div className="label" onClick={() => setPage(2)}>Изменить пароль</div>
                     <form onSubmit={updateUser} className="content">
                         <label htmlFor="">
@@ -143,7 +143,7 @@ const Account = () => {
                         </label>
                         <button>Изменить пароль</button>
                     </form>
-                    </div>
+                    </div>}
                     <div className={page === 3 ? 'drop-container active' : 'drop-container'}>
                     <div className="label" onClick={() => setPage(3)}>Изменить email-адрес</div>
                     <form onSubmit={updateUser} className="content">
@@ -237,32 +237,32 @@ const Account = () => {
                                 <form onSubmit={(e) => handleAdd(e, 'category')} action="">
                                     <label htmlFor="">
                                         <p>Категории</p>
-                                        <input type="text" name="name" placeholder='Название категории'/>
-                                        <input type="file" name="name" placeholder='file'/>
+                                        <input type="text" name="name" placeholder='Название категории' required/>
+                                        <input type="file" name="name" placeholder='file' required/>
                                     </label><br />
                                     <button>Создать категорию</button>
                                 </form>
                                 <form onSubmit={(e) => handleAdd(e, 'sub')} action="">
                                 <label htmlFor="">
                                     <p>Подкатегории</p>
-                                    <select name="categoryId">
+                                    <select name="categoryId" required>
                                         {category.length > 0 && category.map(res => {
                                             return <option key={res._id} value={res._id}>{res.name}</option>
                                         })}
                                     </select>
-                                    <input type="text" name="name" placeholder='Название подкатегории'/>
+                                    <input type="text" name="name" placeholder='Название подкатегории' required/>
                                 </label> <br />
                                 <button>Создать категорию</button>
                                 </form>
                                 <form onSubmit={(e) => handleAdd(e, 'type')} action="">
                                     <label htmlFor="">
                                         <p>Тип категории</p>
-                                        <select name="subId">
+                                        <select name="subId" required>
                                             {sub.length > 0 && sub.map(res => {
                                                 return <option key={res._id} value={res._id}>{res.name}</option>
                                             })}
                                         </select>
-                                        <input type="text" name='name' placeholder='Название тип категории'/>
+                                        <input type="text" name='name' placeholder='Название тип категории' required/>
                                     </label> <br />
                                     <button>Создать категорию</button>
                                 </form>

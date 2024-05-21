@@ -55,6 +55,22 @@
         }
     }
     .info-prod, .media-info-prod{
+        .slick-dots{
+            bottom: 15px;
+            li{
+                .active{
+                    background-color: #002f34;
+                }
+                button{
+                    border: 5px solid white;
+                    border-radius: 50%;
+                    &:hover, &:active{
+                        background-color: #002f34;
+
+                    }
+                }
+            }
+        }
         .side{
             display: flex;
             justify-content: space-between;

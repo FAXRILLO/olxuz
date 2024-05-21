@@ -1,7 +1,8 @@
 .my {
     width: 100%;
-    max-width: 1440px;
     .top-account{
+      max-width: 1440px;
+      margin: 0 auto;
         .top-btn{
             display: flex;
             align-items: center;
@@ -104,16 +105,22 @@
       display: flex;
       justify-content: space-between;
       margin-top: 15px;
-      padding-bottom: 50px;
+      padding: 50px 0;
+      width: 100%;
   
       .filterR {
-        padding: 10px 40px;
+        width: 25%;
+        padding: 10px 0 10px 10px;
         border: 2px solid #002f34;
         font-weight: bold;
         border-radius: 5px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
       }
       .searchInput {
-        padding: 10px 40px;
+        width: 25%;
+        padding: 10px 0 10px 10px;
         background: #fff;
         border-radius: 5px;
         display: flex;
@@ -127,7 +134,7 @@
       }
       .category,
       .sort {
-        padding: 15px 35px;
+        padding: 10px 0 10px 10px;
         background: #fff;
         border-radius: 5px;
         display: flex;
@@ -159,6 +166,11 @@
         .card-info {
           display: flex;
           gap: 10px;
+          img{
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+          }
         }
   
         .status-two {
@@ -226,6 +238,18 @@
   }
 
   @media (max-width: 1024px){
+    .one{
+      .card-user{
+        img{
+          width: 200px !important;
+          height: 200px !important;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px){
     .top-account{
       display: none;
     }
@@ -247,8 +271,16 @@
         border: none;
       }
     }
+    .one{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
     .card-user{
       width: 100%;
+      display: flex;
+      flex-direction: column;
       box-shadow: 1px 1px 5px gray;
       padding: 20px !important;
       .card-info{
@@ -258,10 +290,12 @@
           margin: 20px 1px;
         }
         display: flex;
+        gap: 10px;
         flex-direction: column;
         img{
-          width: 200px !important;
-          height: 200px !important;
+          width: 280px !important;
+          height: 280px !important;
+          margin: 0 auto;
           object-fit: cover;
         }
       }

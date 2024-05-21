@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./AddProd.scss";
 import { useInfoContext } from "../../context/infoContext";
 import { toast } from "react-toastify";
 import { addProd } from "../../api/addRequest";
-import { Link } from "react-router-dom";
-const modalData = [
-  ["Chakana savdo-sotuvlar","Transport-logistika", "Qurilish", "Barlar-restoranlar", "Yurisprudentsiya-va-buhgalteriya","Qo'riqlash-xavfsizlik", "Uy xodimlari", "Go'zallik-fitnes-sport", "Turizm-dam olish-o'yinlar", "Ta'lim", "Madaniyat-san'at", "Tibbiyot-farmatsiya", "It-telekom-kompyuterlar", "Ko'chmas mulk", "Marketing-reklama-dizayn", "Ishlab chiqarish-energetika", "Kotibiyat-Axo", "Karyerani boshlash, talabalar", "Xizmat ko'rsatish", "Boshqa mashg'ulotlar", ],
-  ["Yengil avtomashinalar", "Avto ehtiyot qismlari va aksessuarlar", "Shinalar, disklar va g'ildiraklar", "Moto" ,"Moto ehtiyot qismlari va aksessuarlar", "Boshqa transport", "Avtobuslar", "Yuk mashinalari", "Tirkamalar", "Maxsus texnika", "Qishloq xo'jalik texnikasi", "Maxsus texnika uchun qismlar", "Suv transporti", "Boshqa ehtiyot qismlar",],
-  ["Kiyim-kechak", "To'y uchun", "Moda, turli-tumanliklar", "Qo'l soatlari", "Aksessuarlar", "Sovg'alar", "Go'zallik-salomatlik"]
-]
+import Loader from "../../components/Loader/Loader";
+
 const AddProd = () => {
   const {category, type, sub, currentUser, toggleReset, exit} = useInfoContext()
-  const [currentData, setCurrentData] = useState(modalData[0])
   const [getId, setGetId] = useState(null)
   const [subId, setSubId] = useState(null)
   const [typeId, setTypeId] = useState(null)
   const [modal, setModal] = useState(false)
+  const [send, setSend] = useState(false)
   const [list, setList] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [images, setImages] = useState(Array(8).fill(null));
@@ -23,20 +19,9 @@ const AddProd = () => {
   const toggle = () => setModal(!modal)
   const toggleShow = () => setShowModal(!showModal)
 
-  const handleChangeMenu = (index) => {
-    setCurrentData(modalData[index]);
-  }
-  useEffect(() => {
-    document.querySelectorAll('.change-menu').forEach(item => {
-      item.onClick = function() {
-        document.querySelectorAll('.change-menu').forEach(item => item.classList.remove('active'));
-        item.classList.add('active')
-      }
-    })
-  }, [])
-
   const handleAdd = async (e) => {
     e.preventDefault();
+    setSend(true)
     try {
         const formData = new FormData(e.target);
         formData.append('authorId', currentUser._id);
@@ -62,8 +47,10 @@ const AddProd = () => {
         setGetId(null)
         setSubId(null)
         setTypeId(null)
+        setSend(false)
         e.target.reset();
     } catch (err) {
+        setSend(false)
         toast.dismiss();
         toast.error(err?.response?.data?.message);
         if (err?.response?.data?.message === 'jwt expired') {
@@ -98,7 +85,7 @@ const handleRemoveImage = (index) => {
           <div className="Prod">
             <form onSubmit={handleAdd} action="">
               <div className="prod_title">
-                <h2>Создать объявление</h2>
+                <h2 style={{padding: '0 25px'}}>Создать объявление</h2>
               </div>
 
               <section className="select">
@@ -121,7 +108,7 @@ const handleRemoveImage = (index) => {
 
                 <label className="rukn">Категория*</label>
 
-                <button   className="add__btn" onClick={() => {toggle(); subId && setTypeId(null); setSubId(null)}} >
+                <button type="button"  className="add__btn" onClick={() => {toggle(); subId && setTypeId(null); setSubId(null)}} >
                   {filterCat && <img style={{height: '60px', width: '60px', borderRadius: '50%', backgroundColor: filterCat.color}} src={filterCat.image.url} alt="photo"/>}
                   <div style={{textAlign: 'start'}}>
                     {!typeId ? <p> Выберите категорию</p> : <b>{filterId.name}</b>}
@@ -170,7 +157,7 @@ const handleRemoveImage = (index) => {
                           <ul className={list === 0 ? "modal_list" : "modal_list none-list"}>
                             {category.length > 0 && category.map(cat => {
                              return (
-                               <li style={cat._id === getId ? {backgroundColor: 'rgba(64, 99, 103, 0.200)'} : {}} key={cat._id} className="change-menu" onClick={() => {handleChangeMenu(0); setGetId(cat._id); setSubId(null); setList(1)}}>
+                               <li style={cat._id === getId ? {backgroundColor: 'rgba(64, 99, 103, 0.200)'} : {}} key={cat._id} className="change-menu" onClick={() => {setGetId(cat._id); setSubId(null); setList(1)}}>
                                 {cat.name} <i className="fa-solid fa-angle-right"></i>
                               </li>
                              )
@@ -250,7 +237,7 @@ const handleRemoveImage = (index) => {
                 </div>}
                 {filterCat?.name === 'Работа' && <div className="input_info">
                   <p>Ссылка на форму подачи резюме</p>
-                  <input style={{width: '70%'}} type="text" name="link"/>
+                  <input required style={{width: '70%'}} type="text" name="link"/>
                 </div>}
               </section>
               {filterCat?.name !== 'Работа' && <section className="price">
@@ -332,6 +319,7 @@ const handleRemoveImage = (index) => {
                     type="text"
                     placeholder="СМ3"
                     name="capacity"
+                    required
                   />
                 </div>
                 <div className="input_info">
@@ -350,6 +338,7 @@ const handleRemoveImage = (index) => {
                   <p>Состояние машины*</p>
                   <select name="state" required>
                     <option selected disabled>Выбрать</option>
+                    <option value="Отличное">Отличное</option>
                     <option value="Хорошее">Хорошее</option>
                     <option value="Среднее">Среднее</option>
                     <option value="Требует ремонта">Требует ремонта</option>
@@ -463,7 +452,7 @@ const handleRemoveImage = (index) => {
                 <p>Email-адрес</p>
                 <input className="th-l" disabled={true} defaultValue={currentUser?.email} type="email" name="email" placeholder="@gmail.com" />
                 <p>Номер телефона</p>
-                <input type="tel" placeholder="" name="phone"/>
+                <input type="tel" placeholder="" name="phone" required/>
               </section>
               <section className="last_section">
                 <div className="rights">
@@ -473,8 +462,7 @@ const handleRemoveImage = (index) => {
                       <span></span>
                     </div>
                   </p>
-                  <a></a>
-                  <button>Опубликовать</button>
+                  {send ? <Loader/> : <button>Опубликовать</button>}
                 </div>
               </section>
             </form>

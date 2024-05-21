@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.scss'
 import { useInfoContext } from '../../context/infoContext'
 import Card from '../../components/Card/Card'
@@ -6,20 +6,19 @@ import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader/Loader'
 
 const Home = () => {
-  const {cards, category} = useInfoContext()
-  console.log(cards);
+  const {cards, category, loader, restart, setRestart, search, handleSearch, handleLocation} = useInfoContext()
   return (
     <main>
       <div className="search-box">
         <div className="container">
-          <div className="search">
+          <form className="search">
             <label htmlFor="">
               <i className="fa-solid fa-magnifying-glass"></i>
-              <input type="search" placeholder='Что ищете?'/>
+              <input onChange={handleSearch}  type="search" placeholder='Что ищете?' name='name'/>
             </label>
             <label htmlFor="" className='map'>
               <i className="fa-solid fa-location-dot"></i>
-              <input type="text" placeholder='Все страна' />
+              <input onChange={handleLocation}  type="text" placeholder='Все страна' name='location'/>
             </label>
             <button>
               <span>Поиск</span>
@@ -28,14 +27,14 @@ const Home = () => {
             <button className='media-btn'>
             <i className="fa-regular fa-bell"></i>
             </button>
-          </div>
+          </form>
         </div>
       </div>
       <section className="categorys">
           <div className="container">
-            <h2 className='title'>Разделы на сервисе OLX</h2>
+            <h2 className='title'>{restart ? <div className='search-title'><span>Search result</span> <button onClick={() => setRestart(false)}><i className="fa-solid fa-arrow-rotate-right"></i></button></div>  : 'Разделы на сервисе OLX'}</h2>
             <h2 className='title-media'>Категории <span>Смотреть все</span></h2>
-            <div className="items">
+            {!restart && <div className="items">
               <ul>
                 <li className='active-item media-img'>
                   <div className="image" style={{display:"flex", alignItems: 'center', justifyContent: 'center', backgroundColor: '#002f34'}}>
@@ -56,15 +55,16 @@ const Home = () => {
                   })
                 : <Loader />} 
               </ul>
-            </div>
+            </div>}
           </div>
       </section>
       <div className="prods">
         <div className="container">
           <div className="all-prods">
-            {cards.length > 0 ? cards.map(card => {
+            {cards.length > 0 && !restart ? cards.map(card => {
               return <Card key={card._id} prod={card}/>
-            }) : <Loader/>}
+            }) : restart && search.length > 0 ? search.map(card => {
+              return <Card key={card._id} prod={card}/>}) : <Loader/>}
           </div>
         </div>
       </div>

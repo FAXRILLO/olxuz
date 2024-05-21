@@ -2,7 +2,7 @@ main{
     background-color: #f2f4f5;
     padding: 50px 0;
     width: 100%;
-    max-width: 1440px;
+    // max-width: 1440px;
     .search-box{
         .search{
             display: flex;
@@ -65,7 +65,7 @@ main{
             padding: 40px 0;
             ul{
                 display: flex;
-                align-items: center;
+                // align-items: center;
                 flex-wrap: wrap;
                 list-style-type: none;
                 gap: 36px;

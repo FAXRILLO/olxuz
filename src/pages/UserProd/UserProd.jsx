@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./UserProd.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useInfoContext } from "../../context/infoContext";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const UserProd = () => {
   const { cards, toggleReset, currentUser, exit, works, category} = useInfoContext();
-
+  const [reset, setReset] = useState(false)
   const userArr = [...cards, ...works]
 
   const userProd = userArr.filter((prod) => prod.authorId === currentUser._id);
@@ -33,10 +33,12 @@ const UserProd = () => {
           const res = await deleteProd(prod._id, 'work')
           result = res.data.message
         }
-          toast.dismiss()
+        toast.dismiss()
+        setReset(!reset)
           toast.success(result)
           toggleReset()
       } catch (err) {
+          setReset(!reset)
           toast.dismiss()
           toast.error(err.response.data.message)
           if(err.response.data.message === 'jwt expired'){
@@ -63,7 +65,6 @@ const UserProd = () => {
                     <li><NavLink to='/my'>Объявления</NavLink></li>
                     <li><NavLink to='/chat'>Сообщения</NavLink></li>
                     <li><NavLink to='/'>Платежи и счёт OLX</NavLink></li>
-                    <li><NavLink to='/'>Полученные оценки</NavLink></li>
                     <li><NavLink to='/'>Профиль кандидата</NavLink></li>
                     <li><NavLink to='/account'>Настройки</NavLink></li>
                 </ul>
@@ -102,9 +103,10 @@ const UserProd = () => {
           </div>
           <div className="cardsS">
             {userProd.length > 0 ? (
+              currentUser.role !== 'admin' ?
               userProd.map((res) => {
                 return (
-                  <div key={res._id} className="card-user">
+                  <div style={res.authorId === currentUser._id ? {backgroundColor: 'white'} : {backgroundColor: 'whitesmoke', border: '2px solid white', color: 'gray'}} key={res._id} className="card-user">
                     <div className="one">
                       <div className="card-info">
                         {res?.photos?.length > 0 && <img src={res.photos[0].url} alt="" />}
@@ -112,12 +114,63 @@ const UserProd = () => {
                           <div id="res-content">
                             <b>{res.content}</b><br />
                           </div>
-                          <i className="fa-solid fa-location-dot"></i>
+                          <i className="fa-solid fa-location-dot"></i> 
                           {res.location} <br />
-                          <i className="fa-solid fa-calendar-days"></i> 
+                          <i className="fa-solid fa-calendar-days"></i>  
                           {new Date(
                             res.createdAt
-                          ).toLocaleTimeString()}
+                          ).toLocaleDateString()} <br />
+                          {currentUser.role === 'admin' && res.authorId !== currentUser._id && <b style={{color: 'gray'}}>Это Объявления от (<span style={{backgroundColor: 'red', color: 'white', padding: "5px"}}>{res?.user?.firstname ? res.user.firstname : "Новый пользователь"}</span>)</b>}
+                        </div>
+                      </div>
+                      <div className="card-status">
+                        <div className="status-two">
+                          <b>{res.price}</b>
+                          <div className="iconss">
+                            <span>
+                              0 <i className="fa-regular fa-heart"></i>
+                            </span>
+                            <span>
+                              0 <i className="fa-solid fa-phone"></i>
+                            </span>
+                            <span>
+                              0 <i className="fa-solid fa-eye"></i>
+                            </span>
+                            <button>Просмотр статиску</button>
+                            <button>
+                              <i className="fa-regular fa-comment"></i> 0
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="usertwo">
+                      <p>id:{res._id}</p>
+                      <div>
+                        <Link to={`/prod/${res._id}`}><button>Проверить</button></Link>
+                        <span onClick={() => deleteProdact(res)} style={{cursor: 'pointer'}}>Удалить</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }) : 
+              userArr.map((res) => {
+                return (
+                  <div style={res.authorId === currentUser._id ? {backgroundColor: 'white'} : {backgroundColor: 'whitesmoke', border: '2px solid white', color: 'gray'}} key={res._id} className="card-user">
+                    <div className="one">
+                      <div className="card-info">
+                        {res?.photos?.length > 0 && <img src={res.photos[0].url} alt="" />}
+                        <div className="status-one">
+                          <div id="res-content">
+                            <b>{res.content}</b><br />
+                          </div>
+                          <i className="fa-solid fa-location-dot"></i> 
+                          {res.location} <br />
+                          <i className="fa-solid fa-calendar-days"></i>  
+                          {new Date(
+                            res.createdAt
+                          ).toLocaleDateString()} <br />
+                          {currentUser.role === 'admin' && res.authorId !== currentUser._id && <b style={{color: 'gray'}}>Это Объявления от (<span style={{backgroundColor: 'red', color: 'white', padding: "5px"}}>{res?.user?.firstname ? res.user.firstname : "Новый пользователь"}</span>)</b>}
                         </div>
                       </div>
                       <div className="card-status">

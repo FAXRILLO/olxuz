@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { getProd } from "../api/getRequest"
+import { getLocation, getProd, getSimilar } from "../api/getRequest"
 
 const InfoContext = createContext()
 
@@ -16,6 +16,11 @@ export const InfoProvider = ({children}) => {
     const [currentChat, setCurrentChat] = useState(null)
     const [chats, setChats] = useState([])
     const [loadingRes, setLoadingRes] = useState(false)
+    const [loader, setLoader] = useState(false);
+    const [restart, setRestart] = useState(false);
+    const [search, setSearch] = useState([]);
+    const [sendMessage, setSendMessage] = useState(null)
+    const [asnwerMessage, setAnswerMessage] = useState(null)
 
     const toggleReset = () => setLoadingRes(!loadingRes)
     
@@ -35,7 +40,6 @@ export const InfoProvider = ({children}) => {
                 setWorks(resWork?.data?.getAll)
                 setCards([...resCar?.data?.getAll, ...resFashion?.data?.getAll])
             } catch (error) {
-                console.log(error);
             }
         }
         getAllProd()
@@ -46,6 +50,38 @@ export const InfoProvider = ({children}) => {
         setCurrentUser(null)
     }
 
+const fetchData = async (type, value) => {
+  if (value !== '') {
+    setLoader(true);
+    setRestart(true);
+    try {
+      let res;
+      if (type === 'search') {
+        res = await getSimilar('car', value);
+      } else if (type === 'location') {
+        res = await getLocation(value);
+      }
+      setSearch(res.data.similar);
+    } catch (error) {
+      
+    } finally {
+      setLoader(false);
+    }
+  } else {
+    setRestart(false);
+    setSearch([]);
+    setLoader(false);
+  }
+};
+
+const handleSearch = (e) => {
+  fetchData('search', e.target.value);
+};
+
+const handleLocation = (e) => {
+  fetchData('location', e.target.value);
+};
+
      const value = {
         currentUser, setCurrentUser, exit,
         cards, setCards, category, setCategory,
@@ -53,7 +89,12 @@ export const InfoProvider = ({children}) => {
         currentChat, setCurrentChat,
         chats, setChats, sub, setSub,
         type, setType, works, setWorks,
-        toggleReset
+        toggleReset, loader, setLoader,
+        restart, setRestart,
+        search, setSearch,
+        handleSearch, handleLocation,
+        sendMessage, setSendMessage,
+        asnwerMessage, setAnswerMessage, loadingRes
     }
 
  

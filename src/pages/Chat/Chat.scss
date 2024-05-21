@@ -118,6 +118,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            overflow-y: auto;
+            height: 43vh;
             padding: 20px 0;
         }
         .message-box{

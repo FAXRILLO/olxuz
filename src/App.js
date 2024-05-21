@@ -44,7 +44,7 @@ function App() {
         <Route path='/my' element={!currentUser ? <Auth reset={setIsSignUp}/> : <UserProd/>}/>
         <Route path='/prod/:id' element={<OneProd/>}/>
       </Routes>
-      {!isSignUp && <Footer/>}
+      {!isSignUp && path !== '/chat' && <Footer/>}
     </div>
   );
 }
